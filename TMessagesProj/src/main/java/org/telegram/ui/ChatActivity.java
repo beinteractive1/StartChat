@@ -202,6 +202,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private final static int clear_history = 11;
     private final static int delete_chat = 12;
     private final static int share_contact = 13;
+    private final static int send_bitcoin = 14;
 
     AdapterView.OnItemLongClickListener onItemLongClickListener = new AdapterView.OnItemLongClickListener() {
         @Override
@@ -723,6 +724,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
                             showAlertDialog(builder);
                         }
+                    } else if (id == send_bitcoin) {
+                        BitcoinActivity fragment = new BitcoinActivity();
+                        presentFragment(fragment);
                     }
                 }
             });
@@ -872,7 +876,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             attachItem = menu.addItem(chat_menu_attach, R.drawable.ic_ab_other);
             attachItem.addSubItem(attach_photo, LocaleController.getString("ChatTakePhoto", R.string.ChatTakePhoto), R.drawable.ic_attach_photo);
             attachItem.addSubItem(attach_gallery, LocaleController.getString("ChatGallery", R.string.ChatGallery), R.drawable.ic_attach_gallery);
-            attachItem.addSubItem(attach_gallery, LocaleController.getString("ChatSendBitCoin", R.string.ChatSendBitCoin), R.drawable.ic_attach_bitcoins);
+            attachItem.addSubItem(send_bitcoin, LocaleController.getString("ChatSendBitCoin", R.string.ChatSendBitCoin), R.drawable.ic_attach_bitcoins);
             attachItem.addSubItem(attach_video, LocaleController.getString("ChatVideo", R.string.ChatVideo), R.drawable.ic_attach_video);
             attachItem.addSubItem(attach_document, LocaleController.getString("ChatDocument", R.string.ChatDocument), R.drawable.ic_ab_doc);
             attachItem.addSubItem(attach_location, LocaleController.getString("ChatLocation", R.string.ChatLocation), R.drawable.ic_attach_location);
@@ -881,7 +885,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             menuItem = menu.addItem(chat_menu_attach, R.drawable.ic_ab_attach);
             menuItem.addSubItem(attach_photo, LocaleController.getString("ChatTakePhoto", R.string.ChatTakePhoto), R.drawable.ic_attach_photo);
             menuItem.addSubItem(attach_gallery, LocaleController.getString("ChatGallery", R.string.ChatGallery), R.drawable.ic_attach_gallery);
-            menuItem.addSubItem(attach_gallery, LocaleController.getString("ChatSendBitCoin", R.string.ChatSendBitCoin), R.drawable.ic_attach_bitcoins);
+            menuItem.addSubItem(send_bitcoin, LocaleController.getString("ChatSendBitCoin", R.string.ChatSendBitCoin), R.drawable.ic_attach_bitcoins);
             menuItem.addSubItem(attach_video, LocaleController.getString("ChatVideo", R.string.ChatVideo), R.drawable.ic_attach_video);
             menuItem.addSubItem(attach_document, LocaleController.getString("ChatDocument", R.string.ChatDocument), R.drawable.ic_ab_doc);
             menuItem.addSubItem(attach_location, LocaleController.getString("ChatLocation", R.string.ChatLocation), R.drawable.ic_attach_location);

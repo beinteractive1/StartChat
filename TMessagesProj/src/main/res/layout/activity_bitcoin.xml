@@ -1,0 +1,192 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/BitTransferContainer"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="org.telegram.ui.BitcoinActivity" tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_gravity="top"
+        android:layout_margin="0dp"
+        android:background="#3c000000"
+        android:gravity="top"
+        android:id="@+id/CoinSelectionSection">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bitcoins"
+            android:id="@+id/buttonBit"
+            android:layout_weight="1"
+            android:layout_margin="0dp"
+            android:clickable="true"
+            android:background="#ffeaebee"
+            android:textColor="#ff282828"
+            android:nestedScrollingEnabled="false" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Starcoins"
+            android:id="@+id/buttonStart"
+            android:layout_weight="1"
+            android:background="#ffebecef"
+            android:textColor="#ff282828" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="210dp"
+        android:background="#ff269acc"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="49dp"
+        android:baselineAligned="false"
+        android:id="@+id/MiddleSection">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Balance"
+            android:id="@+id/textBalance"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#ffffffff" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="0.00 BTC"
+                android:id="@+id/textAmountCoins"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#ffffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=" ( € 0.00 )"
+                android:id="@+id/textAmountEuro"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#ffffffff" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Unconfirmed"
+            android:id="@+id/textConfirm"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:textColor="#ffffffff" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="0.00 BTC"
+                android:id="@+id/textView"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#ffffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=" ( € 0.00 )"
+                android:id="@+id/textView2"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#ffffffff" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="280dp"
+        android:id="@+id/CoinAmountSection">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editCoinAmount"
+            android:layout_weight="1"
+            android:autoText="false"
+            android:backgroundTint="@color/background_tab_pressed"
+            android:editable="true"
+            android:hint="Insert Amount"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="#ff677279"
+            android:width="50dp"
+            android:layout_marginLeft="100dp"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="BTC"
+            android:id="@+id/textCoinToSend"
+            android:layout_weight="1"
+            android:textColor="#ff43565d" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff269acc"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="340dp"
+        android:baselineAligned="false"
+        android:id="@+id/linearLayout"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEND COINS"
+                android:id="@+id/button"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
