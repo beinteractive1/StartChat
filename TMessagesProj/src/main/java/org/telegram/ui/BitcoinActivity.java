@@ -16,8 +16,11 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import org.bitcoinj.core.Wallet;
 import org.telegram.android.AndroidUtilities;
 import org.telegram.android.LocaleController;
+import org.telegram.bitcoin.providers.ExchangeRatesProvider;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -34,6 +37,7 @@ public class BitcoinActivity extends BaseFragment {
                 actionBar.setItemsBackground(R.drawable.bar_selector_picker);
                 actionBar.setBackButtonImage(R.drawable.ic_ab_back);
                 actionBar.setTitle("Send Coins");
+
                 actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.ActionBar.ActionBar.ActionBarMenuOnItemClick() {
                     @Override
                     public void onItemClick(int id) {
@@ -49,6 +53,24 @@ public class BitcoinActivity extends BaseFragment {
                 menu.addItem(1, R.drawable.ic_ab_other);
 
                 fragmentView = inflater.inflate(R.layout.activity_bitcoin, container, false);
+
+                Wallet wallet = ApplicationLoader.getWallet();
+                wallet.getBalance().getValue();
+                // bitCoin Amount
+                TextView textView = (TextView)fragmentView.findViewById(R.id.textView);
+                textView.setText(wallet.getBalance().getValue() + " BTC");
+
+
+                ExchangeRatesProvider exchangeRateProvider = new ExchangeRatesProvider();
+
+                // euro Amount
+                TextView textView2 = (TextView)fragmentView.findViewById(R.id.textView2);
+                textView2.setText("(€ (0.01)");
+
+                // Send button action
+                Button sendCoinsButton = (Button)fragmentView.findViewById(R.id.send_coins_button);
+
+
 
             } else {
                 ViewGroup parent = (ViewGroup)fragmentView.getParent();

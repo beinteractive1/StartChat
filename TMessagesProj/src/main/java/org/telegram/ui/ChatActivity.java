@@ -728,6 +728,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         BitcoinActivity fragment = new BitcoinActivity();
                         presentFragment(fragment);
                     }
+
                 }
             });
 
