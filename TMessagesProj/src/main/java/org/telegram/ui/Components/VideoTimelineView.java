@@ -50,6 +50,7 @@ public class VideoTimelineView extends View {
 
     public abstract interface VideoTimelineViewDelegate {
         public void onLeftProgressChanged(float progress);
+
         public void onRifhtProgressChanged(float progress);
     }
 
@@ -93,20 +94,20 @@ public class VideoTimelineView extends View {
         float y = event.getY();
 
         int width = getMeasuredWidth() - AndroidUtilities.dp(32);
-        int startX = (int)(width * progressLeft) + AndroidUtilities.dp(16);
-        int endX = (int)(width * progressRight) + AndroidUtilities.dp(16);
+        int startX = (int) (width * progressLeft) + AndroidUtilities.dp(16);
+        int endX = (int) (width * progressRight) + AndroidUtilities.dp(16);
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             int additionWidth = AndroidUtilities.dp(12);
             if (startX - additionWidth <= x && x <= startX + additionWidth && y >= 0 && y <= getMeasuredHeight()) {
                 pressedLeft = true;
-                pressDx = (int)(x - startX);
+                pressDx = (int) (x - startX);
                 getParent().requestDisallowInterceptTouchEvent(true);
                 invalidate();
                 return true;
             } else if (endX - additionWidth <= x && x <= endX + additionWidth && y >= 0 && y <= getMeasuredHeight()) {
                 pressedRight = true;
-                pressDx = (int)(x - endX);
+                pressDx = (int) (x - endX);
                 getParent().requestDisallowInterceptTouchEvent(true);
                 invalidate();
                 return true;
@@ -121,26 +122,26 @@ public class VideoTimelineView extends View {
             }
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             if (pressedLeft) {
-                startX = (int)(x - pressDx);
+                startX = (int) (x - pressDx);
                 if (startX < AndroidUtilities.dp(16)) {
                     startX = AndroidUtilities.dp(16);
                 } else if (startX > endX) {
                     startX = endX;
                 }
-                progressLeft = (float)(startX - AndroidUtilities.dp(16)) / (float)width;
+                progressLeft = (float) (startX - AndroidUtilities.dp(16)) / (float) width;
                 if (delegate != null) {
                     delegate.onLeftProgressChanged(progressLeft);
                 }
                 invalidate();
                 return true;
             } else if (pressedRight) {
-                endX = (int)(x - pressDx);
+                endX = (int) (x - pressDx);
                 if (endX < startX) {
                     endX = startX;
                 } else if (endX > width + AndroidUtilities.dp(16)) {
                     endX = width + AndroidUtilities.dp(16);
                 }
-                progressRight = (float)(endX - AndroidUtilities.dp(16)) / (float)width;
+                progressRight = (float) (endX - AndroidUtilities.dp(16)) / (float) width;
                 if (delegate != null) {
                     delegate.onRifhtProgressChanged(progressRight);
                 }
@@ -173,7 +174,7 @@ public class VideoTimelineView extends View {
         if (frameNum == 0) {
             frameHeight = AndroidUtilities.dp(40);
             framesToLoad = (getMeasuredWidth() - AndroidUtilities.dp(16)) / frameHeight;
-            frameWidth = (int)Math.ceil((float)(getMeasuredWidth() - AndroidUtilities.dp(16)) / (float)framesToLoad);
+            frameWidth = (int) Math.ceil((float) (getMeasuredWidth() - AndroidUtilities.dp(16)) / (float) framesToLoad);
             frameTimeOffset = videoLength / framesToLoad;
         }
         currentTask = new AsyncTask<Integer, Integer, Bitmap>() {
@@ -271,8 +272,8 @@ public class VideoTimelineView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         int width = getMeasuredWidth() - AndroidUtilities.dp(36);
-        int startX = (int)(width * progressLeft) + AndroidUtilities.dp(16);
-        int endX = (int)(width * progressRight) + AndroidUtilities.dp(16);
+        int startX = (int) (width * progressLeft) + AndroidUtilities.dp(16);
+        int endX = (int) (width * progressRight) + AndroidUtilities.dp(16);
 
         canvas.save();
         canvas.clipRect(AndroidUtilities.dp(16), 0, width + AndroidUtilities.dp(20), AndroidUtilities.dp(44));

@@ -27,6 +27,7 @@ import java.lang.reflect.Field;
 public class ActionBarPopupWindow extends PopupWindow {
 
     private static final Field superListenerField;
+
     static {
         Field f = null;
         try {

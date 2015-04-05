@@ -491,7 +491,7 @@ public class DialogCell extends BaseCell {
                 messageLeft += w;
             }
         } else if (countString != null) {
-            countWidth = Math.max(AndroidUtilities.dp(12), (int)Math.ceil(countPaint.measureText(countString)));
+            countWidth = Math.max(AndroidUtilities.dp(12), (int) Math.ceil(countPaint.measureText(countString)));
             countLayout = new StaticLayout(countString, countPaint, countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             int w = countWidth + AndroidUtilities.dp(18);
             messageWidth -= w;
@@ -617,8 +617,8 @@ public class DialogCell extends BaseCell {
         chat = null;
         encryptedChat = null;
 
-        int lower_id = (int)currentDialogId;
-        int high_id = (int)(currentDialogId >> 32);
+        int lower_id = (int) currentDialogId;
+        int high_id = (int) (currentDialogId >> 32);
         if (lower_id != 0) {
             if (high_id == 1) {
                 chat = MessagesController.getInstance().getChat(lower_id);

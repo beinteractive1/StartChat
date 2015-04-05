@@ -60,7 +60,7 @@ public class ActionBar extends FrameLayout {
         super(context);
         titleFrameLayout = new FrameLayout(context);
         addView(titleFrameLayout);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)titleFrameLayout.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) titleFrameLayout.getLayoutParams();
         layoutParams.width = LayoutParams.WRAP_CONTENT;
         layoutParams.height = LayoutParams.FILL_PARENT;
         layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
@@ -71,7 +71,7 @@ public class ActionBar extends FrameLayout {
 
     private void positionBackImage(int height) {
         if (backButtonImageView != null) {
-            LayoutParams layoutParams = (LayoutParams)backButtonImageView.getLayoutParams();
+            LayoutParams layoutParams = (LayoutParams) backButtonImageView.getLayoutParams();
             layoutParams.width = AndroidUtilities.dp(54);
             layoutParams.height = height;
             layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
@@ -169,7 +169,7 @@ public class ActionBar extends FrameLayout {
         if (menu == null) {
             return;
         }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)menu.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menu.getLayoutParams();
         layoutParams.width = isSearchFieldVisible ? LayoutParams.MATCH_PARENT : LayoutParams.WRAP_CONTENT;
         layoutParams.height = height;
         layoutParams.leftMargin = isSearchFieldVisible ? AndroidUtilities.dp(54) : 0;
@@ -307,7 +307,7 @@ public class ActionBar extends FrameLayout {
         }
         menu = new ActionBarMenu(getContext(), this);
         addView(menu);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)menu.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menu.getLayoutParams();
         layoutParams.height = LayoutParams.FILL_PARENT;
         layoutParams.width = LayoutParams.WRAP_CONTENT;
         layoutParams.gravity = Gravity.RIGHT;
@@ -323,7 +323,7 @@ public class ActionBar extends FrameLayout {
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = li.inflate(resourceId, null);
         addView(view);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)view.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
         layoutParams.width = LayoutParams.FILL_PARENT;
         layoutParams.height = LayoutParams.FILL_PARENT;
         layoutParams.topMargin = occupyStatusBar ? AndroidUtilities.statusBarHeight : 0;
@@ -338,7 +338,7 @@ public class ActionBar extends FrameLayout {
         actionMode.setBackgroundResource(R.drawable.editheader);
         addView(actionMode);
         actionMode.setPadding(0, occupyStatusBar ? AndroidUtilities.statusBarHeight : 0, 0, 0);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)actionMode.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) actionMode.getLayoutParams();
         layoutParams.height = LayoutParams.FILL_PARENT;
         layoutParams.width = LayoutParams.FILL_PARENT;
         layoutParams.gravity = Gravity.RIGHT;
@@ -349,7 +349,7 @@ public class ActionBar extends FrameLayout {
             actionModeTop = new View(getContext());
             actionModeTop.setBackgroundColor(0x99000000);
             addView(actionModeTop);
-            layoutParams = (FrameLayout.LayoutParams)actionModeTop.getLayoutParams();
+            layoutParams = (FrameLayout.LayoutParams) actionModeTop.getLayoutParams();
             layoutParams.height = AndroidUtilities.statusBarHeight;
             layoutParams.width = LayoutParams.FILL_PARENT;
             layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
@@ -406,7 +406,7 @@ public class ActionBar extends FrameLayout {
         }
         Drawable drawable = backButtonImageView.getDrawable();
         if (drawable != null && drawable instanceof MenuDrawable) {
-            ((MenuDrawable)drawable).setRotation(visible ? 1 : 0, true);
+            ((MenuDrawable) drawable).setRotation(visible ? 1 : 0, true);
         }
     }
 

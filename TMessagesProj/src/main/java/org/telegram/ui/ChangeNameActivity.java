@@ -98,7 +98,7 @@ public class ChangeNameActivity extends BaseFragment {
             firstNameField.setHint(LocaleController.getString("FirstName", R.string.FirstName));
             AndroidUtilities.clearCursorDrawable(firstNameField);
             ((LinearLayout) fragmentView).addView(firstNameField);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)firstNameField.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) firstNameField.getLayoutParams();
             layoutParams.topMargin = AndroidUtilities.dp(24);
             layoutParams.height = AndroidUtilities.dp(36);
             layoutParams.leftMargin = AndroidUtilities.dp(24);
@@ -130,7 +130,7 @@ public class ChangeNameActivity extends BaseFragment {
             lastNameField.setHint(LocaleController.getString("LastName", R.string.LastName));
             AndroidUtilities.clearCursorDrawable(lastNameField);
             ((LinearLayout) fragmentView).addView(lastNameField);
-            layoutParams = (LinearLayout.LayoutParams)lastNameField.getLayoutParams();
+            layoutParams = (LinearLayout.LayoutParams) lastNameField.getLayoutParams();
             layoutParams.topMargin = AndroidUtilities.dp(16);
             layoutParams.height = AndroidUtilities.dp(36);
             layoutParams.leftMargin = AndroidUtilities.dp(24);
@@ -154,7 +154,7 @@ public class ChangeNameActivity extends BaseFragment {
                 lastNameField.setText(user.last_name);
             }
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }

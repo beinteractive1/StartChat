@@ -438,7 +438,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         presentFragment(new MediaActivity(args));
                     } else if (i == settingsKeyRow) {
                         Bundle args = new Bundle();
-                        args.putInt("chat_id", (int)(dialog_id >> 32));
+                        args.putInt("chat_id", (int) (dialog_id >> 32));
                         presentFragment(new IdenticonActivity(args));
                     } else if (i == settingsTimerRow) {
                         if (getParentActivity() == null) {
@@ -473,7 +473,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                        builder.setItems(new CharSequence[] {LocaleController.getString("Call", R.string.Call), LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
+                        builder.setItems(new CharSequence[]{LocaleController.getString("Call", R.string.Call), LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (i == 0) {
@@ -485,11 +485,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                         FileLog.e("tmessages", e);
                                     }
                                 } else if (i == 1) {
-                                    if(Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+                                    if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
                                         android.text.ClipboardManager clipboard = (android.text.ClipboardManager) ApplicationLoader.applicationContext.getSystemService(Context.CLIPBOARD_SERVICE);
                                         clipboard.setText("+" + user.phone);
                                     } else {
-                                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager)ApplicationLoader.applicationContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) ApplicationLoader.applicationContext.getSystemService(Context.CLIPBOARD_SERVICE);
                                         android.content.ClipData clip = android.content.ClipData.newPlainText("label", "+" + user.phone);
                                         clipboard.setPrimaryClip(clip);
                                     }
@@ -626,7 +626,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
             updateProfileData();
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -686,14 +686,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         if (avatarImage != null) {
-            float diff = actionBar.getExtraHeight() / (float)AndroidUtilities.dp(88);
+            float diff = actionBar.getExtraHeight() / (float) AndroidUtilities.dp(88);
             float diffm = 1.0f - diff;
 
-            int avatarSize = 42 + (int)(18 * diff);
-            int avatarX = 17 + (int)(47 * diffm);
-            int avatarY = AndroidUtilities.dp(22) - (int)((AndroidUtilities.dp(22) - (AndroidUtilities.getCurrentActionBarHeight() - AndroidUtilities.dp(42)) / 2) * (1.0f - diff));
-            int nameX = 97 + (int)(21 * diffm);
-            int nameEndX = 16 + (int)(32 * diffm);
+            int avatarSize = 42 + (int) (18 * diff);
+            int avatarX = 17 + (int) (47 * diffm);
+            int avatarY = AndroidUtilities.dp(22) - (int) ((AndroidUtilities.dp(22) - (AndroidUtilities.getCurrentActionBarHeight() - AndroidUtilities.dp(42)) / 2) * (1.0f - diff));
+            int nameX = 97 + (int) (21 * diffm);
+            int nameEndX = 16 + (int) (32 * diffm);
             float nameFontSize = 20 - 2 * diffm;
             int nameY = avatarY + AndroidUtilities.dp(29 - 10 * diffm);
             int statusY = avatarY + AndroidUtilities.dp(8 - 7 * diffm);
@@ -763,7 +763,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void didReceivedNotification(int id, final Object... args) {
         if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if (user_id != 0) {
                 if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0 || (mask & MessagesController.UPDATE_MASK_STATUS) != 0) {
                     updateProfileData();
@@ -791,7 +791,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         } else if (id == NotificationCenter.contactsDidLoaded) {
             createActionBarMenu();
         } else if (id == NotificationCenter.mediaCountDidLoaded) {
-            long uid = (Long)args[0];
+            long uid = (Long) args[0];
             if (user_id != 0) {
                 if (uid > 0 && user_id == uid && dialog_id == 0 || dialog_id != 0 && dialog_id == uid) {
                     totalMediaCount = (Integer) args[1];
@@ -800,9 +800,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                 }
             } else if (chat_id != 0) {
-                int lower_part = (int)uid;
+                int lower_part = (int) uid;
                 if (lower_part < 0 && chat_id == -lower_part) {
-                    totalMediaCount = (Integer)args[1];
+                    totalMediaCount = (Integer) args[1];
                     if (listView != null) {
                         listView.invalidateViews();
                     }
@@ -822,7 +822,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 });
             }
         } else if (id == NotificationCenter.encryptedChatUpdated) {
-            TLRPC.EncryptedChat chat = (TLRPC.EncryptedChat)args[0];
+            TLRPC.EncryptedChat chat = (TLRPC.EncryptedChat) args[0];
             if (currentEncryptedChat != null && chat.id == currentEncryptedChat.id) {
                 currentEncryptedChat = chat;
                 updateRowsIds();
@@ -838,9 +838,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 createActionBarMenu();
             }
         } else if (id == NotificationCenter.chatInfoDidLoaded) {
-            int chatId = (Integer)args[0];
+            int chatId = (Integer) args[0];
             if (chatId == chat_id) {
-                info = (TLRPC.ChatParticipants)args[1];
+                info = (TLRPC.ChatParticipants) args[1];
                 updateOnlineCount();
                 updateRowsIds();
                 if (listAdapter != null) {
@@ -900,7 +900,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void willSwitchFromPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int index) { }
+    public void willSwitchFromPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int index) {
+    }
 
     @Override
     public void willHidePhotoViewer() {
@@ -908,19 +909,26 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public boolean isPhotoChecked(int index) { return false; }
+    public boolean isPhotoChecked(int index) {
+        return false;
+    }
 
     @Override
-    public void setPhotoChecked(int index) { }
+    public void setPhotoChecked(int index) {
+    }
 
     @Override
-    public void cancelButtonPressed() { }
+    public void cancelButtonPressed() {
+    }
 
     @Override
-    public void sendButtonPressed(int index) { }
+    public void sendButtonPressed(int index) {
+    }
 
     @Override
-    public int getSelectedCount() { return 0; }
+    public int getSelectedCount() {
+        return 0;
+    }
 
     private void updateOnlineCount() {
         if (info == null) {
@@ -1156,7 +1164,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             Bundle args = new Bundle();
             args.putBoolean("scrollToTopOnResume", true);
             NotificationCenter.getInstance().postNotificationName(NotificationCenter.closeChats);
-            int lower_part = (int)dialog_id;
+            int lower_part = (int) dialog_id;
             if (lower_part != 0) {
                 if (lower_part > 0) {
                     args.putInt("user_id", lower_part);
@@ -1164,7 +1172,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     args.putInt("chat_id", -lower_part);
                 }
             } else {
-                args.putInt("enc_id", (int)(dialog_id >> 32));
+                args.putInt("enc_id", (int) (dialog_id >> 32));
             }
             presentFragment(new ChatActivity(args), true);
             removeSelfFromStack();
@@ -1274,7 +1282,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                     textCell.setTextAndValue(LocaleController.getString("SharedMedia", R.string.SharedMedia), value);
                 } else if (i == settingsTimerRow) {
-                    TLRPC.EncryptedChat encryptedChat = MessagesController.getInstance().getEncryptedChat((int)(dialog_id >> 32));
+                    TLRPC.EncryptedChat encryptedChat = MessagesController.getInstance().getEncryptedChat((int) (dialog_id >> 32));
                     String value;
                     if (encryptedChat.ttl == 0) {
                         value = LocaleController.getString("ShortMessageLifetimeForever", R.string.ShortMessageLifetimeForever);
@@ -1289,7 +1297,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     textCell.setTextColor(0xff37a919);
                 } else if (i == settingsKeyRow) {
                     IdenticonDrawable identiconDrawable = new IdenticonDrawable();
-                    TLRPC.EncryptedChat encryptedChat = MessagesController.getInstance().getEncryptedChat((int)(dialog_id >> 32));
+                    TLRPC.EncryptedChat encryptedChat = MessagesController.getInstance().getEncryptedChat((int) (dialog_id >> 32));
                     identiconDrawable.setEncryptedChat(encryptedChat);
                     textCell.setTextAndValueDrawable(LocaleController.getString("EncryptionKey", R.string.EncryptionKey), identiconDrawable);
                 }
@@ -1299,7 +1307,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
 
                 TLRPC.TL_chatParticipant part = info.participants.get(sortedUsers.get(i - emptyRowChat2 - 1));
-                ((UserCell)view).setData(MessagesController.getInstance().getUser(part.user_id), null, null, i == emptyRowChat2 + 1 ? R.drawable.menu_newgroup : 0);
+                ((UserCell) view).setData(MessagesController.getInstance().getUser(part.user_id), null, null, i == emptyRowChat2 + 1 ? R.drawable.menu_newgroup : 0);
             } else if (type == 5) {
                 if (view == null) {
                     view = new ShadowSectionCell(mContext);

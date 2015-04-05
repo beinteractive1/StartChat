@@ -88,7 +88,7 @@ public class ChangePhoneHelpActivity extends BaseFragment {
             ImageView imageView = new ImageView(getParentActivity());
             imageView.setImageResource(R.drawable.phone_change);
             linearLayout.addView(imageView);
-            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)imageView.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) imageView.getLayoutParams();
             layoutParams2.width = LinearLayout.LayoutParams.WRAP_CONTENT;
             layoutParams2.height = LinearLayout.LayoutParams.WRAP_CONTENT;
             layoutParams2.gravity = Gravity.CENTER_HORIZONTAL;
@@ -106,7 +106,7 @@ public class ChangePhoneHelpActivity extends BaseFragment {
                 textView.setText(LocaleController.getString("PhoneNumberHelp", R.string.PhoneNumberHelp));
             }
             linearLayout.addView(textView);
-            layoutParams2 = (LinearLayout.LayoutParams)textView.getLayoutParams();
+            layoutParams2 = (LinearLayout.LayoutParams) textView.getLayoutParams();
             layoutParams2.width = LinearLayout.LayoutParams.WRAP_CONTENT;
             layoutParams2.height = LinearLayout.LayoutParams.WRAP_CONTENT;
             layoutParams2.gravity = Gravity.CENTER_HORIZONTAL;
@@ -123,7 +123,7 @@ public class ChangePhoneHelpActivity extends BaseFragment {
             textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
             textView.setPadding(0, AndroidUtilities.dp(10), 0, AndroidUtilities.dp(10));
             linearLayout.addView(textView);
-            layoutParams2 = (LinearLayout.LayoutParams)textView.getLayoutParams();
+            layoutParams2 = (LinearLayout.LayoutParams) textView.getLayoutParams();
             layoutParams2.width = LinearLayout.LayoutParams.WRAP_CONTENT;
             layoutParams2.height = LinearLayout.LayoutParams.WRAP_CONTENT;
             layoutParams2.gravity = Gravity.CENTER_HORIZONTAL;
@@ -153,7 +153,7 @@ public class ChangePhoneHelpActivity extends BaseFragment {
             });
 
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }

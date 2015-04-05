@@ -20,8 +20,8 @@ public class TypingDotsDrawable extends Drawable {
     private boolean isChat = false;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private float[] scales = new float[3];
-    private float[] startTimes = new float[] {0, 150, 300};
-    private float[] elapsedTimes = new float[] {0, 0, 0};
+    private float[] startTimes = new float[]{0, 150, 300};
+    private float[] elapsedTimes = new float[]{0, 0, 0};
     private long lastUpdateTime = 0;
     private boolean started = false;
     private DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();

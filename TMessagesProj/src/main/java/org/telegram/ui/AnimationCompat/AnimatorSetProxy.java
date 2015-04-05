@@ -68,13 +68,13 @@ public class AnimatorSetProxy {
         if (View10.NEED_PROXY) {
             ArrayList<Animator10> animators = new ArrayList<Animator10>();
             for (Object obj : items) {
-                animators.add((Animator10)obj);
+                animators.add((Animator10) obj);
             }
             ((AnimatorSet10) animatorSet).playTogether(animators);
         } else {
             ArrayList<Animator> animators = new ArrayList<Animator>();
             for (Object obj : items) {
-                animators.add((Animator)obj);
+                animators.add((Animator) obj);
             }
             ((AnimatorSet) animatorSet).playTogether(animators);
         }

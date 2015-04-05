@@ -193,10 +193,10 @@ public class PhotoCropActivity extends BaseFragment {
             float scaleY = viewHeight / h;
             if (scaleX > scaleY) {
                 bitmapHeight = viewHeight;
-                bitmapWidth = (int)Math.ceil(w * scaleY);
+                bitmapWidth = (int) Math.ceil(w * scaleY);
             } else {
                 bitmapWidth = viewWidth;
-                bitmapHeight = (int)Math.ceil(h * scaleX);
+                bitmapHeight = (int) Math.ceil(h * scaleX);
             }
             bitmapX = (viewWidth - bitmapWidth) / 2;
             bitmapY = (viewHeight - bitmapHeight) / 2;
@@ -231,9 +231,9 @@ public class PhotoCropActivity extends BaseFragment {
             float percX = (rectX - bitmapX) / bitmapWidth;
             float percY = (rectY - bitmapY) / bitmapHeight;
             float percSize = rectSize / bitmapWidth;
-            int x = (int)(percX * imageToCrop.getWidth());
-            int y = (int)(percY * imageToCrop.getHeight());
-            int size = (int)(percSize * imageToCrop.getWidth());
+            int x = (int) (percX * imageToCrop.getWidth());
+            int y = (int) (percY * imageToCrop.getHeight());
+            int size = (int) (percSize * imageToCrop.getWidth());
             if (x + size > imageToCrop.getWidth()) {
                 size = imageToCrop.getWidth() - x;
             }
@@ -358,7 +358,7 @@ public class PhotoCropActivity extends BaseFragment {
             fragmentView = view = new PhotoCropView(getParentActivity());
             fragmentView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }

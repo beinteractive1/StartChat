@@ -29,7 +29,7 @@ public class HeaderCell extends FrameLayout {
         textView.setTextColor(0xff3e90cf);
         textView.setGravity((LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.CENTER_VERTICAL);
         addView(textView);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)textView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
         layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT;
         layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT;
         layoutParams.leftMargin = AndroidUtilities.dp(17);

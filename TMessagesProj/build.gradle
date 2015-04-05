@@ -90,7 +90,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 13
+        minSdkVersion 14
         targetSdkVersion 21
         versionCode 403
         versionName "2.1.0"

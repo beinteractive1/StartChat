@@ -102,7 +102,7 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
             }
             if (currentInfoString == null || !currentInfoString.equals(str)) {
                 currentInfoString = str;
-                infoWidth = (int)Math.ceil(infoPaint.measureText(currentInfoString));
+                infoWidth = (int) Math.ceil(infoPaint.measureText(currentInfoString));
                 CharSequence str2 = TextUtils.ellipsize(currentInfoString, infoPaint, infoWidth, TextUtils.TruncateAt.END);
                 infoLayout = new StaticLayout(str2, infoPaint, infoWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 invalidate();
@@ -127,11 +127,11 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
             }
 
             long msTime = System.currentTimeMillis() + ConnectionsManager.getInstance().getTimeDifference() * 1000;
-            float progress = Math.max(0, (long)currentMessageObject.messageOwner.destroyTime * 1000 - msTime) / (currentMessageObject.messageOwner.ttl * 1000.0f);
+            float progress = Math.max(0, (long) currentMessageObject.messageOwner.destroyTime * 1000 - msTime) / (currentMessageObject.messageOwner.ttl * 1000.0f);
             canvas.drawArc(deleteProgressRect, -90, -360 * progress, true, deleteProgressPaint);
             if (progress != 0) {
                 int offset = AndroidUtilities.dp(2);
-                invalidate((int)deleteProgressRect.left - offset, (int)deleteProgressRect.top - offset, (int)deleteProgressRect.right + offset * 2, (int)deleteProgressRect.bottom + offset * 2);
+                invalidate((int) deleteProgressRect.left - offset, (int) deleteProgressRect.top - offset, (int) deleteProgressRect.right + offset * 2, (int) deleteProgressRect.bottom + offset * 2);
             }
             updateSecretTimeText();
 
@@ -155,6 +155,7 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
     private MessageObject currentMessageObject = null;
 
     private static volatile SecretPhotoViewer Instance = null;
+
     public static SecretPhotoViewer getInstance() {
         SecretPhotoViewer localInstance = Instance;
         if (localInstance == null) {
@@ -175,7 +176,7 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
             if (currentMessageObject == null) {
                 return;
             }
-            ArrayList<Integer> markAsDeletedMessages = (ArrayList<Integer>)args[0];
+            ArrayList<Integer> markAsDeletedMessages = (ArrayList<Integer>) args[0];
             if (markAsDeletedMessages.contains(currentMessageObject.messageOwner.id)) {
                 closePhoto();
             }
@@ -183,8 +184,8 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
             if (currentMessageObject == null || secretDeleteTimer == null) {
                 return;
             }
-            SparseArray<ArrayList<Integer>> mids = (SparseArray<ArrayList<Integer>>)args[0];
-            for(int i = 0; i < mids.size(); i++) {
+            SparseArray<ArrayList<Integer>> mids = (SparseArray<ArrayList<Integer>>) args[0];
+            for (int i = 0; i < mids.size(); i++) {
                 int key = mids.keyAt(i);
                 ArrayList<Integer> arr = mids.get(key);
                 for (Integer mid : arr) {
@@ -212,7 +213,7 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
         containerView = new FrameLayoutDrawer(activity);
         containerView.setFocusable(false);
         windowView.addView(containerView);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)containerView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) containerView.getLayoutParams();
         layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT;
         layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT;
         layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
@@ -229,7 +230,7 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
 
         secretDeleteTimer = new SecretDeleteTimer(activity);
         containerView.addView(secretDeleteTimer);
-        layoutParams = (FrameLayout.LayoutParams)secretDeleteTimer.getLayoutParams();
+        layoutParams = (FrameLayout.LayoutParams) secretDeleteTimer.getLayoutParams();
         layoutParams.gravity = Gravity.TOP | Gravity.RIGHT;
         layoutParams.width = AndroidUtilities.dp(100);
         layoutParams.height = AndroidUtilities.dp(32);
@@ -317,7 +318,7 @@ public class SecretPhotoViewer implements NotificationCenter.NotificationCenterD
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public void run() {
-                centerImage.setImageBitmap((Bitmap)null);
+                centerImage.setImageBitmap((Bitmap) null);
             }
         });
         try {

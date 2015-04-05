@@ -54,6 +54,7 @@ public class DocumentSelectActivity extends BaseFragment {
 
     public static abstract interface DocumentSelectActivityDelegate {
         public void didSelectFiles(DocumentSelectActivity activity, ArrayList<String> files);
+
         public void startDocumentSelectActivity();
     }
 
@@ -195,7 +196,7 @@ public class DocumentSelectActivity extends BaseFragment {
                 }
             });
             actionMode.addView(selectedMessagesCountTextView);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)selectedMessagesCountTextView.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) selectedMessagesCountTextView.getLayoutParams();
             layoutParams.weight = 1;
             layoutParams.width = 0;
             layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
@@ -205,14 +206,14 @@ public class DocumentSelectActivity extends BaseFragment {
 
             fragmentView = inflater.inflate(R.layout.document_select_layout, container, false);
             listAdapter = new ListAdapter(getParentActivity());
-            emptyView = (TextView)fragmentView.findViewById(R.id.searchEmptyView);
+            emptyView = (TextView) fragmentView.findViewById(R.id.searchEmptyView);
             emptyView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     return true;
                 }
             });
-            listView = (ListView)fragmentView.findViewById(R.id.listView);
+            listView = (ListView) fragmentView.findViewById(R.id.listView);
             listView.setEmptyView(emptyView);
             listView.setAdapter(listAdapter);
 
@@ -349,7 +350,7 @@ public class DocumentSelectActivity extends BaseFragment {
 
             listRoots();
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -413,7 +414,7 @@ public class DocumentSelectActivity extends BaseFragment {
         File[] files = null;
         try {
             files = dir.listFiles();
-        } catch(Exception e) {
+        } catch (Exception e) {
             showErrorBox(e.getLocalizedMessage());
             return false;
         }
@@ -512,7 +513,7 @@ public class DocumentSelectActivity extends BaseFragment {
                 }
                 aliases.get(info[0]).add(info[1]);
                 if (info[1].equals(extStorage)) {
-                    extDevice=info[0];
+                    extDevice = info[0];
                 }
                 result.add(info[1]);
             }
@@ -567,8 +568,8 @@ public class DocumentSelectActivity extends BaseFragment {
 
     private String getRootSubtitle(String path) {
         StatFs stat = new StatFs(path);
-        long total = (long)stat.getBlockCount() * (long)stat.getBlockSize();
-        long free = (long)stat.getAvailableBlocks() * (long)stat.getBlockSize();
+        long total = (long) stat.getBlockCount() * (long) stat.getBlockSize();
+        long free = (long) stat.getAvailableBlocks() * (long) stat.getBlockSize();
         if (total == 0) {
             return "";
         }

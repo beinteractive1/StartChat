@@ -171,7 +171,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         }
                         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                         builder.setTitle(LocaleController.getString("DeleteAccountTitle", R.string.DeleteAccountTitle));
-                        builder.setItems(new CharSequence[] {
+                        builder.setItems(new CharSequence[]{
                                 LocaleController.formatPluralString("Months", 1),
                                 LocaleController.formatPluralString("Months", 3),
                                 LocaleController.formatPluralString("Months", 6),
@@ -227,7 +227,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -351,7 +351,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     textCell.setText(LocaleController.getString("BlockedUsers", R.string.BlockedUsers), true);
                 } else if (i == terminateSessionsRow) {
                     textCell.setText(LocaleController.getString("TerminateAllSessions", R.string.TerminateAllSessions), false);
-                }  else if (i == lastSeenRow) {
+                } else if (i == lastSeenRow) {
                     String value;
                     if (ContactsController.getInstance().getLoadingLastSeenInfo()) {
                         value = LocaleController.getString("Loading", R.string.Loading);
@@ -359,7 +359,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         value = formatRulesString();
                     }
                     textCell.setTextAndValue(LocaleController.getString("PrivacyLastSeen", R.string.PrivacyLastSeen), value, false);
-                }  else if (i == deleteAccountRow) {
+                } else if (i == deleteAccountRow) {
                     String value;
                     if (ContactsController.getInstance().getLoadingDeleteInfo()) {
                         value = LocaleController.getString("Loading", R.string.Loading);

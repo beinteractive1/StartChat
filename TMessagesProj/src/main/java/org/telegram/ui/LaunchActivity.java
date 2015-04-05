@@ -159,7 +159,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
 
             rightActionBarLayout = new ActionBarLayout(this);
             launchLayout.addView(rightActionBarLayout);
-            relativeLayoutParams = (RelativeLayout.LayoutParams)rightActionBarLayout.getLayoutParams();
+            relativeLayoutParams = (RelativeLayout.LayoutParams) rightActionBarLayout.getLayoutParams();
             relativeLayoutParams.width = AndroidUtilities.dp(320);
             relativeLayoutParams.height = RelativeLayout.LayoutParams.MATCH_PARENT;
             rightActionBarLayout.setLayoutParams(relativeLayoutParams);
@@ -223,7 +223,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
             layersActionBarLayout.setUseAlphaAnimations(true);
             layersActionBarLayout.setBackgroundResource(R.drawable.boxshadow);
             launchLayout.addView(layersActionBarLayout);
-            relativeLayoutParams = (RelativeLayout.LayoutParams)layersActionBarLayout.getLayoutParams();
+            relativeLayoutParams = (RelativeLayout.LayoutParams) layersActionBarLayout.getLayoutParams();
             relativeLayoutParams.width = AndroidUtilities.dp(498);
             relativeLayoutParams.height = AndroidUtilities.dp(528);
             layersActionBarLayout.setLayoutParams(relativeLayoutParams);
@@ -239,7 +239,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
         listView.setAdapter(drawerLayoutAdapter = new DrawerLayoutAdapter(this));
         drawerLayoutContainer.setDrawerLayout(listView);
         listView.setBackgroundColor(0xffffffff);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)listView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) listView.getLayoutParams();
         Point screenSize = AndroidUtilities.getRealScreenSize();
         layoutParams.width = AndroidUtilities.isTablet() ? AndroidUtilities.dp(320) : Math.min(screenSize.x, screenSize.y) - AndroidUtilities.dp(56);
         layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT;
@@ -793,8 +793,8 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
     @Override
     public void didSelectDialog(MessagesActivity messageFragment, long dialog_id, boolean param) {
         if (dialog_id != 0) {
-            int lower_part = (int)dialog_id;
-            int high_id = (int)(dialog_id >> 32);
+            int lower_part = (int) dialog_id;
+            int high_id = (int) (dialog_id >> 32);
 
             Bundle args = new Bundle();
             args.putBoolean("scrollToTopOnResume", true);
@@ -817,7 +817,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
             ChatActivity fragment = new ChatActivity(args);
 
             if (videoPath != null) {
-                if(android.os.Build.VERSION.SDK_INT >= 16) {
+                if (android.os.Build.VERSION.SDK_INT >= 16) {
                     if (AndroidUtilities.isTablet()) {
                         actionBarLayout.presentFragment(fragment, false, true, true);
                     }
@@ -885,7 +885,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
     public void needLayout() {
         if (AndroidUtilities.isTablet()) {
 
-            RelativeLayout.LayoutParams relativeLayoutParams = (RelativeLayout.LayoutParams)layersActionBarLayout.getLayoutParams();
+            RelativeLayout.LayoutParams relativeLayoutParams = (RelativeLayout.LayoutParams) layersActionBarLayout.getLayoutParams();
             relativeLayoutParams.leftMargin = (AndroidUtilities.displaySize.x - relativeLayoutParams.width) / 2;
             int y = (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
             relativeLayoutParams.topMargin = y + (AndroidUtilities.displaySize.y - relativeLayoutParams.height - y) / 2;
@@ -1059,7 +1059,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
                 onFinish();
             }
         } else if (id == NotificationCenter.didUpdatedConnectionState) {
-            int state = (Integer)args[0];
+            int state = (Integer) args[0];
             if (currentConnectionState != state) {
                 FileLog.e("tmessages", "switch to state " + state);
                 currentConnectionState = state;
@@ -1218,7 +1218,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
         if (AndroidUtilities.isTablet()) {
             drawerLayoutContainer.setAllowOpenDrawer(!(fragment instanceof LoginActivity) && layersActionBarLayout.getVisibility() != View.VISIBLE);
             if (fragment instanceof MessagesActivity) {
-                MessagesActivity messagesActivity = (MessagesActivity)fragment;
+                MessagesActivity messagesActivity = (MessagesActivity) fragment;
                 if (messagesActivity.getDelegate() == null && layout != actionBarLayout) {
                     actionBarLayout.removeAllFragments();
                     actionBarLayout.presentFragment(fragment, removeLast, forceWithoutAnimation, false);
@@ -1303,7 +1303,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
         if (AndroidUtilities.isTablet()) {
             drawerLayoutContainer.setAllowOpenDrawer(!(fragment instanceof LoginActivity) && layersActionBarLayout.getVisibility() != View.VISIBLE);
             if (fragment instanceof MessagesActivity) {
-                MessagesActivity messagesActivity = (MessagesActivity)fragment;
+                MessagesActivity messagesActivity = (MessagesActivity) fragment;
                 if (messagesActivity.getDelegate() == null && layout != actionBarLayout) {
                     actionBarLayout.removeAllFragments();
                     actionBarLayout.addFragmentToStack(fragment);

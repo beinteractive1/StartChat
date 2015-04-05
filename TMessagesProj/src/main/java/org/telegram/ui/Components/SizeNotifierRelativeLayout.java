@@ -71,11 +71,11 @@ public class SizeNotifierRelativeLayout extends RelativeLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (backgroundDrawable != null) {
-            float scaleX = (float)getMeasuredWidth() / (float)backgroundDrawable.getIntrinsicWidth();
-            float scaleY = (float)getMeasuredHeight() / (float)backgroundDrawable.getIntrinsicHeight();
+            float scaleX = (float) getMeasuredWidth() / (float) backgroundDrawable.getIntrinsicWidth();
+            float scaleY = (float) getMeasuredHeight() / (float) backgroundDrawable.getIntrinsicHeight();
             float scale = scaleX < scaleY ? scaleY : scaleX;
-            int width = (int)Math.ceil(backgroundDrawable.getIntrinsicWidth() * scale);
-            int height = (int)Math.ceil(backgroundDrawable.getIntrinsicHeight() * scale);
+            int width = (int) Math.ceil(backgroundDrawable.getIntrinsicWidth() * scale);
+            int height = (int) Math.ceil(backgroundDrawable.getIntrinsicHeight() * scale);
             int x = (getMeasuredWidth() - width) / 2;
             int y = (getMeasuredHeight() - height) / 2;
             backgroundDrawable.setBounds(x, y, x + width, y + height);

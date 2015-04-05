@@ -230,7 +230,7 @@ public class LanguageSelectActivity extends BaseFragment {
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }

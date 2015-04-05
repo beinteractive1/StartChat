@@ -150,7 +150,7 @@ public class DrawerLayoutContainer extends FrameLayout {
         if (drawerLayout.getVisibility() != newVisibility) {
             drawerLayout.setVisibility(newVisibility);
         }
-        setScrimOpacity(drawerPosition / (float)drawerLayout.getMeasuredWidth());
+        setScrimOpacity(drawerPosition / (float) drawerLayout.getMeasuredWidth());
     }
 
     public float getDrawerPosition() {
@@ -226,7 +226,7 @@ public class DrawerLayoutContainer extends FrameLayout {
         drawerOpened = opened;
         if (!opened) {
             if (drawerLayout instanceof ListView) {
-                ((ListView)drawerLayout).setSelectionFromTop(0, 0);
+                ((ListView) drawerLayout).setSelectionFromTop(0, 0);
             }
         }
     }
@@ -300,8 +300,8 @@ public class DrawerLayoutContainer extends FrameLayout {
                         requestDisallowInterceptTouchEvent(true);
                     } else if (startedTracking) {
                         if (!beginTrackingSent) {
-                            if (((Activity)getContext()).getCurrentFocus() != null) {
-                                AndroidUtilities.hideKeyboard(((Activity)getContext()).getCurrentFocus());
+                            if (((Activity) getContext()).getCurrentFocus() != null) {
+                                AndroidUtilities.hideKeyboard(((Activity) getContext()).getCurrentFocus());
                             }
                             beginTrackingSent = true;
                         }
@@ -381,7 +381,7 @@ public class DrawerLayoutContainer extends FrameLayout {
             if (drawerLayout != child) {
                 child.layout(lp.leftMargin, lp.topMargin, lp.leftMargin + child.getMeasuredWidth(), lp.topMargin + child.getMeasuredHeight());
             } else {
-                child.layout(-child.getMeasuredWidth() + (int)drawerPosition, lp.topMargin, (int)drawerPosition, lp.topMargin + child.getMeasuredHeight());
+                child.layout(-child.getMeasuredWidth() + (int) drawerPosition, lp.topMargin, (int) drawerPosition, lp.topMargin + child.getMeasuredHeight());
             }
         }
         inLayout = false;
@@ -467,7 +467,7 @@ public class DrawerLayoutContainer extends FrameLayout {
         } else if (shadowLeft != null) {
             final float alpha = Math.max(0, Math.min(drawerPosition / AndroidUtilities.dp(20), 1.0f));
             if (alpha != 0) {
-                shadowLeft.setBounds((int)drawerPosition, child.getTop(), (int)drawerPosition + shadowLeft.getIntrinsicWidth(), child.getBottom());
+                shadowLeft.setBounds((int) drawerPosition, child.getTop(), (int) drawerPosition + shadowLeft.getIntrinsicWidth(), child.getBottom());
                 shadowLeft.setAlpha((int) (0xff * alpha));
                 shadowLeft.draw(canvas);
             }

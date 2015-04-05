@@ -157,10 +157,10 @@ public class ChangePhoneActivity extends BaseFragment {
 
             try {
                 if (views[0] == null || views[1] == null) {
-                    FrameLayout parent = (FrameLayout)((ScrollView) fragmentView).getChildAt(0);
+                    FrameLayout parent = (FrameLayout) ((ScrollView) fragmentView).getChildAt(0);
                     for (int a = 0; a < views.length; a++) {
                         if (views[a] == null) {
-                            views[a] = (SlideView)parent.getChildAt(a);
+                            views[a] = (SlideView) parent.getChildAt(a);
                         }
                     }
                 }
@@ -170,7 +170,7 @@ public class ChangePhoneActivity extends BaseFragment {
 
             actionBar.setTitle(views[0].getHeaderName());
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -242,7 +242,7 @@ public class ChangePhoneActivity extends BaseFragment {
     }
 
     public void setPage(int page, boolean animated, Bundle params, boolean back) {
-        if(android.os.Build.VERSION.SDK_INT > 10) {
+        if (android.os.Build.VERSION.SDK_INT > 10) {
             final SlideView outView = views[currentViewNum];
             final SlideView newView = views[page];
             currentViewNum = page;
@@ -474,7 +474,7 @@ public class ChangePhoneActivity extends BaseFragment {
                             int toDelete = 0;
                             for (int a = start; a >= 0; a--) {
                                 substr = str.substring(a, a + 1);
-                                if(phoneChars.contains(substr)) {
+                                if (phoneChars.contains(substr)) {
                                     break;
                                 }
                                 toDelete++;
@@ -558,7 +558,7 @@ public class ChangePhoneActivity extends BaseFragment {
             String country = null;
 
             try {
-                TelephonyManager telephonyManager = (TelephonyManager)ApplicationLoader.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
                 if (telephonyManager != null) {
                     country = telephonyManager.getSimCountryIso().toUpperCase();
                 }
@@ -678,7 +678,7 @@ public class ChangePhoneActivity extends BaseFragment {
                         public void run() {
                             nextPressed = false;
                             if (error == null) {
-                                TLRPC.TL_account_sentChangePhoneCode res = (TLRPC.TL_account_sentChangePhoneCode)response;
+                                TLRPC.TL_account_sentChangePhoneCode res = (TLRPC.TL_account_sentChangePhoneCode) response;
                                 params.putString("phoneHash", res.phone_code_hash);
                                 params.putInt("calltime", res.send_call_timeout * 1000);
                                 setPage(1, true, params, false);
@@ -914,7 +914,7 @@ public class ChangePhoneActivity extends BaseFragment {
 
         private void destroyCodeTimer() {
             try {
-                synchronized(timerSync) {
+                synchronized (timerSync) {
                     if (codeTimer != null) {
                         codeTimer.cancel();
                         codeTimer = null;
@@ -973,7 +973,7 @@ public class ChangePhoneActivity extends BaseFragment {
 
         private void destroyTimer() {
             try {
-                synchronized(timerSync) {
+                synchronized (timerSync) {
                     if (timeTimer != null) {
                         timeTimer.cancel();
                         timeTimer = null;

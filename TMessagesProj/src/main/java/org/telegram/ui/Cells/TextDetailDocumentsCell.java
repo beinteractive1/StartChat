@@ -123,7 +123,7 @@ public class TextDetailDocumentsCell extends FrameLayout {
         if (thumb != null || resId != 0) {
             if (thumb != null) {
                 imageView.setImage(thumb, "40_40", null);
-            } else  {
+            } else {
                 imageView.setImageResource(resId);
             }
             imageView.setVisibility(VISIBLE);

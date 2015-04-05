@@ -170,7 +170,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                             if (user == null) {
                                 return;
                             }
-                            TLRPC.TL_photos_photo photo = (TLRPC.TL_photos_photo)response;
+                            TLRPC.TL_photos_photo photo = (TLRPC.TL_photos_photo) response;
                             ArrayList<TLRPC.PhotoSize> sizes = photo.photo.sizes;
                             TLRPC.PhotoSize smallSize = FileLoader.getClosestPhotoSizeWithSize(sizes, 100);
                             TLRPC.PhotoSize bigSize = FileLoader.getClosestPhotoSizeWithSize(sizes, 1000);
@@ -497,7 +497,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         }
                         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                         builder.setTitle(LocaleController.getString("SortBy", R.string.SortBy));
-                        builder.setItems(new CharSequence[] {
+                        builder.setItems(new CharSequence[]{
                                 LocaleController.getString("Default", R.string.Default),
                                 LocaleController.getString("SortFirstName", R.string.SortFirstName),
                                 LocaleController.getString("SortLastName", R.string.SortLastName)
@@ -623,10 +623,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     }
                     boolean fullMenu = false;
                     if (user.photo != null && user.photo.photo_big != null && !(user.photo instanceof TLRPC.TL_userProfilePhotoEmpty)) {
-                        items = new CharSequence[] {LocaleController.getString("FromCamera", R.string.FromCamera), LocaleController.getString("FromGalley", R.string.FromGalley), LocaleController.getString("DeletePhoto", R.string.DeletePhoto)};
+                        items = new CharSequence[]{LocaleController.getString("FromCamera", R.string.FromCamera), LocaleController.getString("FromGalley", R.string.FromGalley), LocaleController.getString("DeletePhoto", R.string.DeletePhoto)};
                         fullMenu = true;
                     } else {
-                        items = new CharSequence[] {LocaleController.getString("FromCamera", R.string.FromCamera), LocaleController.getString("FromGalley", R.string.FromGalley)};
+                        items = new CharSequence[]{LocaleController.getString("FromCamera", R.string.FromCamera), LocaleController.getString("FromGalley", R.string.FromGalley)};
                     }
 
                     final boolean full = fullMenu;
@@ -673,7 +673,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
             updateUserData();
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -713,7 +713,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public void willSwitchFromPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int index) { }
+    public void willSwitchFromPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int index) {
+    }
 
     @Override
     public void willHidePhotoViewer() {
@@ -721,19 +722,26 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public boolean isPhotoChecked(int index) { return false; }
+    public boolean isPhotoChecked(int index) {
+        return false;
+    }
 
     @Override
-    public void setPhotoChecked(int index) { }
+    public void setPhotoChecked(int index) {
+    }
 
     @Override
-    public void cancelButtonPressed() { }
+    public void cancelButtonPressed() {
+    }
 
     @Override
-    public void sendButtonPressed(int index) { }
+    public void sendButtonPressed(int index) {
+    }
 
     @Override
-    public int getSelectedCount() { return 0; }
+    public int getSelectedCount() {
+        return 0;
+    }
 
     public void performAskAQuestion() {
         final SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
@@ -748,7 +756,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         byte[] datacentersBytes = Base64.decode(userString, Base64.DEFAULT);
                         if (datacentersBytes != null) {
                             SerializedData data = new SerializedData(datacentersBytes);
-                            supportUser = (TLRPC.User)TLClassStore.Instance().TLdeserialize(data, data.readInt32());
+                            supportUser = (TLRPC.User) TLClassStore.Instance().TLdeserialize(data, data.readInt32());
                             if (supportUser != null && supportUser.id == 333000) {
                                 supportUser = null;
                             }
@@ -772,7 +780,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 public void run(TLObject response, TLRPC.TL_error error) {
                     if (error == null) {
 
-                        final TLRPC.TL_help_support res = (TLRPC.TL_help_support)response;
+                        final TLRPC.TL_help_support res = (TLRPC.TL_help_support) response;
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public void run() {
@@ -840,7 +848,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0) {
                 updateUserData();
             }
@@ -871,14 +879,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
 
         if (avatarImage != null) {
-            float diff = actionBar.getExtraHeight() / (float)AndroidUtilities.dp(88);
+            float diff = actionBar.getExtraHeight() / (float) AndroidUtilities.dp(88);
             float diffm = 1.0f - diff;
 
-            int avatarSize = 42 + (int)(18 * diff);
-            int avatarX = 17 + (int)(47 * diffm);
-            int avatarY = AndroidUtilities.dp(22) - (int)((AndroidUtilities.dp(22) - (AndroidUtilities.getCurrentActionBarHeight() - AndroidUtilities.dp(42)) / 2) * (1.0f - diff));
-            int nameX = 97 + (int)(21 * diffm);
-            int nameEndX = 16 + (int)(32 * diffm);
+            int avatarSize = 42 + (int) (18 * diff);
+            int avatarX = 17 + (int) (47 * diffm);
+            int avatarY = AndroidUtilities.dp(22) - (int) ((AndroidUtilities.dp(22) - (AndroidUtilities.getCurrentActionBarHeight() - AndroidUtilities.dp(42)) / 2) * (1.0f - diff));
+            int nameX = 97 + (int) (21 * diffm);
+            int nameEndX = 16 + (int) (32 * diffm);
             float nameFontSize = 20 - 2 * diffm;
             int nameY = avatarY + AndroidUtilities.dp(29 - 10 * diffm);
             int statusY = avatarY + AndroidUtilities.dp(8 - 7 * diffm);
@@ -955,7 +963,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         try {
             ArrayList<Uri> uris = new ArrayList<Uri>();
             File sdCard = ApplicationLoader.applicationContext.getExternalFilesDir(null);
-            File dir = new File (sdCard.getAbsolutePath() + "/logs");
+            File dir = new File(sdCard.getAbsolutePath() + "/logs");
             File[] files = dir.listFiles();
             for (File file : files) {
                 uris.add(Uri.fromFile(file));
@@ -965,7 +973,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 return;
             }
             Intent i = new Intent(Intent.ACTION_SEND_MULTIPLE);
-            i.setType("message/rfc822") ;
+            i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL, new String[]{BuildVars.SEND_LOGS_EMAIL});
             i.putExtra(Intent.EXTRA_SUBJECT, "last logs");
             i.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
@@ -1185,7 +1193,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         public int getItemViewType(int i) {
             if (i == emptyRow || i == overscrollRow) {
                 return 0;
-            } if (i == settingsSectionRow || i == supportSectionRow || i == messagesSectionRow || i == mediaDownloadSection || i == contactsSectionRow) {
+            }
+            if (i == settingsSectionRow || i == supportSectionRow || i == messagesSectionRow || i == mediaDownloadSection || i == contactsSectionRow) {
                 return 1;
             } else if (i == enableAnimationsRow || i == sendByEnterRow || i == saveToGalleryRow) {
                 return 3;

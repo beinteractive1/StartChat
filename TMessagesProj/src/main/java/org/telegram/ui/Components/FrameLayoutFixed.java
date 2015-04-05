@@ -34,15 +34,15 @@ public class FrameLayoutFixed extends FrameLayout {
     }
 
     public final int getMeasuredStateFixed(View view) {
-        return (view.getMeasuredWidth()&0xff000000)
-                | ((view.getMeasuredHeight()>>16)
-                & (0xff000000>>16));
+        return (view.getMeasuredWidth() & 0xff000000)
+                | ((view.getMeasuredHeight() >> 16)
+                & (0xff000000 >> 16));
     }
 
     public static int resolveSizeAndStateFixed(int size, int measureSpec, int childMeasuredState) {
         int result = size;
         int specMode = MeasureSpec.getMode(measureSpec);
-        int specSize =  MeasureSpec.getSize(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
         switch (specMode) {
             case MeasureSpec.UNSPECIFIED:
                 result = size;
@@ -58,7 +58,7 @@ public class FrameLayoutFixed extends FrameLayout {
                 result = specSize;
                 break;
         }
-        return result | (childMeasuredState&0xff000000);
+        return result | (childMeasuredState & 0xff000000);
     }
 
     @Override
@@ -123,8 +123,8 @@ public class FrameLayoutFixed extends FrameLayout {
 
                     if (lp.width == LayoutParams.MATCH_PARENT) {
                         childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth() -
-                                getPaddingLeft() - getPaddingRight() -
-                                lp.leftMargin - lp.rightMargin,
+                                        getPaddingLeft() - getPaddingRight() -
+                                        lp.leftMargin - lp.rightMargin,
                                 MeasureSpec.EXACTLY);
                     } else {
                         childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
@@ -135,8 +135,8 @@ public class FrameLayoutFixed extends FrameLayout {
 
                     if (lp.height == LayoutParams.MATCH_PARENT) {
                         childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight() -
-                                getPaddingTop() - getPaddingBottom() -
-                                lp.topMargin - lp.bottomMargin,
+                                        getPaddingTop() - getPaddingBottom() -
+                                        lp.topMargin - lp.bottomMargin,
                                 MeasureSpec.EXACTLY);
                     } else {
                         childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,

@@ -161,9 +161,9 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
             fragmentView = inflater.inflate(R.layout.settings_wallpapers_layout, container, false);
             listAdapter = new ListAdapter(getParentActivity());
 
-            progressBar = (ProgressBar)fragmentView.findViewById(R.id.action_progress);
-            backgroundImage = (ImageView)fragmentView.findViewById(R.id.background_image);
-            listView = (HorizontalListView)fragmentView.findViewById(R.id.listView);
+            progressBar = (ProgressBar) fragmentView.findViewById(R.id.action_progress);
+            backgroundImage = (ImageView) fragmentView.findViewById(R.id.background_image);
+            listView = (HorizontalListView) fragmentView.findViewById(R.id.listView);
             listView.setAdapter(listAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -174,7 +174,7 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
                         }
                         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
 
-                        CharSequence[] items = new CharSequence[] {LocaleController.getString("FromCamera", R.string.FromCamera), LocaleController.getString("FromGalley", R.string.FromGalley), LocaleController.getString("Cancel", R.string.Cancel)};
+                        CharSequence[] items = new CharSequence[]{LocaleController.getString("FromCamera", R.string.FromCamera), LocaleController.getString("FromGalley", R.string.FromGalley), LocaleController.getString("Cancel", R.string.Cancel)};
 
                         builder.setItems(items, new DialogInterface.OnClickListener() {
                             @Override
@@ -210,7 +210,7 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
 
             processSelectedBackground();
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -349,7 +349,7 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
     @Override
     public void didReceivedNotification(int id, final Object... args) {
         if (id == NotificationCenter.FileDidFailedLoad) {
-            String location = (String)args[0];
+            String location = (String) args[0];
             if (loadingFile != null && loadingFile.equals(location)) {
                 loadingFileObject = null;
                 loadingFile = null;
@@ -358,7 +358,7 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
                 doneButton.setEnabled(false);
             }
         } else if (id == NotificationCenter.FileDidLoaded) {
-            String location = (String)args[0];
+            String location = (String) args[0];
             if (loadingFile != null && loadingFile.equals(location)) {
                 backgroundImage.setImageURI(Uri.fromFile(loadingFileObject));
                 progressBar.setVisibility(View.GONE);
@@ -369,16 +369,16 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
                 loadingSize = null;
             }
         } else if (id == NotificationCenter.FileLoadProgressChanged) {
-            String location = (String)args[0];
+            String location = (String) args[0];
             if (loadingFile != null && loadingFile.equals(location)) {
-                Float progress = (Float)args[1];
-                progressBar.setProgress((int)(progress * 100));
+                Float progress = (Float) args[1];
+                progressBar.setProgress((int) (progress * 100));
             }
         } else if (id == NotificationCenter.wallpapersDidLoaded) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public void run() {
-                    wallPapers = (ArrayList<TLRPC.WallPaper>)args[0];
+                    wallPapers = (ArrayList<TLRPC.WallPaper>) args[0];
                     wallpappersByIds.clear();
                     for (TLRPC.WallPaper wallPaper : wallPapers) {
                         wallpappersByIds.put(wallPaper.id, wallPaper);
@@ -413,11 +413,11 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
                     @Override
                     public void run() {
                         wallPapers.clear();
-                        TLRPC.Vector res = (TLRPC.Vector)response;
+                        TLRPC.Vector res = (TLRPC.Vector) response;
                         wallpappersByIds.clear();
                         for (Object obj : res.objects) {
-                            wallPapers.add((TLRPC.WallPaper)obj);
-                            wallpappersByIds.put(((TLRPC.WallPaper)obj).id, (TLRPC.WallPaper)obj);
+                            wallPapers.add((TLRPC.WallPaper) obj);
+                            wallpappersByIds.put(((TLRPC.WallPaper) obj).id, (TLRPC.WallPaper) obj);
                         }
                         listAdapter.notifyDataSetChanged();
                         if (backgroundImage != null) {
@@ -505,11 +505,11 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
             int type = getItemViewType(i);
             if (type == 0) {
                 if (view == null) {
-                    LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     view = li.inflate(R.layout.settings_wallpapers_my_row, viewGroup, false);
                 }
                 View parentView = view.findViewById(R.id.parent);
-                ImageView imageView = (ImageView)view.findViewById(R.id.image);
+                ImageView imageView = (ImageView) view.findViewById(R.id.image);
                 View selection = view.findViewById(R.id.selection);
                 if (i == 0) {
                     if (selectedBackground == -1 || selectedColor != 0 || selectedBackground == 1000001) {
@@ -535,15 +535,15 @@ public class WallpapersActivity extends BaseFragment implements NotificationCent
                 }
             } else if (type == 1) {
                 if (view == null) {
-                    LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     view = li.inflate(R.layout.settings_wallpapers_other_row, viewGroup, false);
                 }
-                BackupImageView image = (BackupImageView)view.findViewById(R.id.image);
+                BackupImageView image = (BackupImageView) view.findViewById(R.id.image);
                 View selection = view.findViewById(R.id.selection);
                 TLRPC.WallPaper wallPaper = wallPapers.get(i - 1);
                 TLRPC.PhotoSize size = FileLoader.getClosestPhotoSizeWithSize(wallPaper.sizes, AndroidUtilities.dp(100));
                 if (size != null && size.location != null) {
-                    image.setImage(size.location, "100_100", (Drawable)null);
+                    image.setImage(size.location, "100_100", (Drawable) null);
                 }
                 if (wallPaper.id == selectedBackground) {
                     selection.setVisibility(View.VISIBLE);

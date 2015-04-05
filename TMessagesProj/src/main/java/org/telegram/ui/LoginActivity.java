@@ -169,10 +169,10 @@ public class LoginActivity extends BaseFragment {
 
             try {
                 if (views[0] == null || views[1] == null || views[2] == null) {
-                    FrameLayout parent = (FrameLayout)((ScrollView) fragmentView).getChildAt(0);
+                    FrameLayout parent = (FrameLayout) ((ScrollView) fragmentView).getChildAt(0);
                     for (int a = 0; a < views.length; a++) {
                         if (views[a] == null) {
-                            views[a] = (SlideView)parent.getChildAt(a);
+                            views[a] = (SlideView) parent.getChildAt(a);
                         }
                     }
                 }
@@ -196,7 +196,7 @@ public class LoginActivity extends BaseFragment {
                 }
             }
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -279,7 +279,7 @@ public class LoginActivity extends BaseFragment {
                     editor.putInt(key, (Integer) obj);
                 }
             } else if (obj instanceof Bundle) {
-                putBundleToEditor((Bundle)obj, editor, key);
+                putBundleToEditor((Bundle) obj, editor, key);
             }
         }
     }
@@ -335,7 +335,7 @@ public class LoginActivity extends BaseFragment {
     }
 
     public void setPage(int page, boolean animated, Bundle params, boolean back) {
-        if(android.os.Build.VERSION.SDK_INT > 13) {
+        if (android.os.Build.VERSION.SDK_INT > 13) {
             final SlideView outView = views[currentViewNum];
             final SlideView newView = views[page];
             currentViewNum = page;
@@ -611,7 +611,7 @@ public class LoginActivity extends BaseFragment {
                             int toDelete = 0;
                             for (int a = start; a >= 0; a--) {
                                 substr = str.substring(a, a + 1);
-                                if(phoneChars.contains(substr)) {
+                                if (phoneChars.contains(substr)) {
                                     break;
                                 }
                                 toDelete++;
@@ -695,7 +695,7 @@ public class LoginActivity extends BaseFragment {
             String country = null;
 
             try {
-                TelephonyManager telephonyManager = (TelephonyManager)ApplicationLoader.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
                 if (telephonyManager != null) {
                     country = telephonyManager.getSimCountryIso().toUpperCase();
                 }
@@ -822,7 +822,7 @@ public class LoginActivity extends BaseFragment {
                         public void run() {
                             nextPressed = false;
                             if (error == null) {
-                                final TLRPC.TL_auth_sentCode res = (TLRPC.TL_auth_sentCode)response;
+                                final TLRPC.TL_auth_sentCode res = (TLRPC.TL_auth_sentCode) response;
                                 params.putString("phoneHash", res.phone_code_hash);
                                 params.putInt("calltime", res.send_call_timeout * 1000);
                                 if (res.phone_registered) {
@@ -1124,7 +1124,7 @@ public class LoginActivity extends BaseFragment {
 
         private void destroyCodeTimer() {
             try {
-                synchronized(timerSync) {
+                synchronized (timerSync) {
                     if (codeTimer != null) {
                         codeTimer.cancel();
                         codeTimer = null;
@@ -1183,7 +1183,7 @@ public class LoginActivity extends BaseFragment {
 
         private void destroyTimer() {
             try {
-                synchronized(timerSync) {
+                synchronized (timerSync) {
                     if (timeTimer != null) {
                         timeTimer.cancel();
                         timeTimer = null;
@@ -1218,7 +1218,7 @@ public class LoginActivity extends BaseFragment {
                             needHideProgress();
                             nextPressed = false;
                             if (error == null) {
-                                TLRPC.TL_auth_authorization res = (TLRPC.TL_auth_authorization)response;
+                                TLRPC.TL_auth_authorization res = (TLRPC.TL_auth_authorization) response;
                                 destroyTimer();
                                 destroyCodeTimer();
                                 UserConfig.clearConfig();

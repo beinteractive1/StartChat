@@ -54,8 +54,11 @@ public class ChatActivityEnterView implements NotificationCenter.NotificationCen
 
     public static interface ChatActivityEnterViewDelegate {
         public abstract void onMessageSend();
+
         public abstract void needSendTyping();
+
         public abstract void onAttachButtonHidden();
+
         public abstract void onAttachButtonShow();
     }
 

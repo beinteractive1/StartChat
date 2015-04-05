@@ -391,7 +391,7 @@ public class ProfileSearchCell extends BaseCell {
         }
 
         if (drawAlpha != 1) {
-            canvas.saveLayerAlpha(0, 0, canvas.getWidth(), canvas.getHeight(), (int)(255 * drawAlpha), Canvas.HAS_ALPHA_LAYER_SAVE_FLAG);
+            canvas.saveLayerAlpha(0, 0, canvas.getWidth(), canvas.getHeight(), (int) (255 * drawAlpha), Canvas.HAS_ALPHA_LAYER_SAVE_FLAG);
         }
 
         if (drawNameLock) {

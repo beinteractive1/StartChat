@@ -42,9 +42,13 @@ public class ActionBarLayout extends FrameLayout {
 
     public static interface ActionBarLayoutDelegate {
         public abstract boolean onPreIme();
+
         public abstract boolean needPresentFragment(BaseFragment fragment, boolean removeLast, boolean forceWithoutAnimation, ActionBarLayout layout);
+
         public abstract boolean needAddFragmentToStack(BaseFragment fragment, ActionBarLayout layout);
+
         public abstract boolean needCloseLastFragment(ActionBarLayout layout);
+
         public abstract void onRebuildAllFragments(ActionBarLayout layout);
     }
 
@@ -257,7 +261,7 @@ public class ActionBarLayout extends FrameLayout {
                 layerShadowDrawable.setAlpha((int) (0xff * alpha));
                 layerShadowDrawable.draw(canvas);
             } else if (child == containerViewBack) {
-                final float opacity = Math.min(0.8f, (width - translationX) / (float)width);
+                final float opacity = Math.min(0.8f, (width - translationX) / (float) width);
                 scrimPaint.setColor((int) (((0x99000000 & 0xff000000) >>> 24) * opacity) << 24);
                 canvas.drawRect(clipLeft, 0, clipRight, getHeight(), scrimPaint);
             }
@@ -414,7 +418,7 @@ public class ActionBarLayout extends FrameLayout {
                             distToMove = containerView.getMeasuredWidth() - x;
                             animatorSet.playTogether(
                                     ObjectAnimatorProxy.ofFloat(containerView, "x", containerView.getMeasuredWidth()),
-                                    ObjectAnimatorProxy.ofFloat(this, "innerTranslationX", (float)containerView.getMeasuredWidth())
+                                    ObjectAnimatorProxy.ofFloat(this, "innerTranslationX", (float) containerView.getMeasuredWidth())
                             );
                         } else {
                             distToMove = x;

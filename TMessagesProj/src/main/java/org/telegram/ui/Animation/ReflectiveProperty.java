@@ -38,12 +38,12 @@ class ReflectiveProperty<T, V> extends Property<T, V> {
      * field results in throwing NoSuchPropertyException.
      *
      * @param propertyHolder The class on which the methods or field are found
-     * @param name The name of the property, where this name is capitalized and appended to
-     * "get" and "is to search for the appropriate methods. If the get/is methods are not found,
-     * the constructor will search for a field with that exact name.
+     * @param name           The name of the property, where this name is capitalized and appended to
+     *                       "get" and "is to search for the appropriate methods. If the get/is methods are not found,
+     *                       the constructor will search for a field with that exact name.
      */
     public ReflectiveProperty(Class<T> propertyHolder, Class<V> valueType, String name) {
-         // TODO: cache reflection info for each new class/name pair
+        // TODO: cache reflection info for each new class/name pair
         super(valueType, name);
         char firstLetter = Character.toUpperCase(name.charAt(0));
         String theRest = name.substring(1);
@@ -147,7 +147,7 @@ class ReflectiveProperty<T, V> extends Property<T, V> {
                 throw new AssertionError();
             }
         } else {
-            throw new UnsupportedOperationException("Property " + getName() +" is read-only");
+            throw new UnsupportedOperationException("Property " + getName() + " is read-only");
         }
     }
 
@@ -155,7 +155,7 @@ class ReflectiveProperty<T, V> extends Property<T, V> {
     public V get(T object) {
         if (mGetter != null) {
             try {
-                return (V) mGetter.invoke(object, (Object[])null);
+                return (V) mGetter.invoke(object, (Object[]) null);
             } catch (IllegalAccessException e) {
                 throw new AssertionError();
             } catch (InvocationTargetException e) {

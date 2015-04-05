@@ -293,7 +293,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                                 if (listView != null) {
                                     listView.setAdapter(searchListViewAdapter);
                                     searchListViewAdapter.notifyDataSetChanged();
-                                    if(android.os.Build.VERSION.SDK_INT >= 11) {
+                                    if (android.os.Build.VERSION.SDK_INT >= 11) {
                                         listView.setFastScrollAlwaysVisible(false);
                                     }
                                     listView.setFastScrollEnabled(false);
@@ -469,7 +469,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -484,7 +484,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 listViewAdapter.notifyDataSetChanged();
             }
         } else if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0 || (mask & MessagesController.UPDATE_MASK_STATUS) != 0) {
                 updateVisibleRows(mask);
             }
@@ -517,7 +517,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private XImageSpan createAndPutChipForUser(TLRPC.User user) {
         LayoutInflater lf = (LayoutInflater) ApplicationLoader.applicationContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View textView = lf.inflate(R.layout.group_create_bubble, null);
-        TextView text = (TextView)textView.findViewById(R.id.bubble_text_view);
+        TextView text = (TextView) textView.findViewById(R.id.bubble_text_view);
         String name = ContactsController.formatName(user.first_name, user.last_name);
         if (name.length() == 0 && user.phone != null && user.phone.length() != 0) {
             name = PhoneFormat.getInstance().format("+" + user.phone);

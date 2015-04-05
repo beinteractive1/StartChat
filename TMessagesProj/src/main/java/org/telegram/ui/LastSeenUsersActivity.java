@@ -173,12 +173,12 @@ public class LastSeenUsersActivity extends BaseFragment implements NotificationC
                     selectedUserId = uidArray.get(i);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                    CharSequence[] items = new CharSequence[] {LocaleController.getString("Delete", R.string.Delete)};
+                    CharSequence[] items = new CharSequence[]{LocaleController.getString("Delete", R.string.Delete)};
                     builder.setItems(items, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             if (i == 0) {
-                                uidArray.remove((Integer)selectedUserId);
+                                uidArray.remove((Integer) selectedUserId);
                                 listViewAdapter.notifyDataSetChanged();
                                 if (delegate != null) {
                                     delegate.didUpdatedUserList(uidArray, false);
@@ -191,7 +191,7 @@ public class LastSeenUsersActivity extends BaseFragment implements NotificationC
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -202,7 +202,7 @@ public class LastSeenUsersActivity extends BaseFragment implements NotificationC
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0) {
                 updateVisibleRows(mask);
             }
@@ -282,7 +282,7 @@ public class LastSeenUsersActivity extends BaseFragment implements NotificationC
                     view = new UserCell(mContext, 1);
                 }
                 TLRPC.User user = MessagesController.getInstance().getUser(uidArray.get(i));
-                ((UserCell)view).setData(user, null, user.phone != null && user.phone.length() != 0 ? PhoneFormat.getInstance().format("+" + user.phone) : LocaleController.getString("NumberUnknown", R.string.NumberUnknown), 0);
+                ((UserCell) view).setData(user, null, user.phone != null && user.phone.length() != 0 ? PhoneFormat.getInstance().format("+" + user.phone) : LocaleController.getString("NumberUnknown", R.string.NumberUnknown), 0);
             } else if (type == 1) {
                 if (view == null) {
                     view = new TextInfoCell(mContext);
@@ -294,7 +294,7 @@ public class LastSeenUsersActivity extends BaseFragment implements NotificationC
 
         @Override
         public int getItemViewType(int i) {
-            if(i == uidArray.size()) {
+            if (i == uidArray.size()) {
                 return 1;
             }
             return 0;

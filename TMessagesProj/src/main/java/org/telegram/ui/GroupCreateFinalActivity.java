@@ -278,7 +278,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             frameLayout.addView(nameTextView);
             layoutParams1 = (FrameLayout.LayoutParams) nameTextView.getLayoutParams();
             layoutParams1.width = FrameLayout.LayoutParams.MATCH_PARENT;
-            layoutParams1.height =  FrameLayout.LayoutParams.WRAP_CONTENT;
+            layoutParams1.height = FrameLayout.LayoutParams.WRAP_CONTENT;
             layoutParams1.leftMargin = LocaleController.isRTL ? AndroidUtilities.dp(16) : AndroidUtilities.dp(96);
             layoutParams1.rightMargin = LocaleController.isRTL ? AndroidUtilities.dp(96) : AndroidUtilities.dp(16);
             layoutParams1.gravity = Gravity.CENTER_VERTICAL;
@@ -318,7 +318,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
             listView.setLayoutParams(layoutParams);
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -378,7 +378,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     @Override
     public void didReceivedNotification(int id, final Object... args) {
         if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0 || (mask & MessagesController.UPDATE_MASK_STATUS) != 0) {
                 updateVisibleRows(mask);
             }
@@ -403,7 +403,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                         }
                     }
                     Bundle args2 = new Bundle();
-                    args2.putInt("chat_id", (Integer)args[0]);
+                    args2.putInt("chat_id", (Integer) args[0]);
                     presentFragment(new ChatActivity(args2), true);
                 }
             });

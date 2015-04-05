@@ -31,7 +31,7 @@ public class LetterSectionCell extends FrameLayout {
         textView.setTextColor(0xff808080);
         textView.setGravity(Gravity.CENTER);
         addView(textView);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)textView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
         layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT;
         layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT;
         textView.setLayoutParams(layoutParams);

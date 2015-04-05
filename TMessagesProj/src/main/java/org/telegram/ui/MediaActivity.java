@@ -69,7 +69,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
         NotificationCenter.getInstance().addObserver(this, NotificationCenter.didReceivedNewMessages);
         NotificationCenter.getInstance().addObserver(this, NotificationCenter.messageReceivedByServer);
         dialog_id = getArguments().getLong("dialog_id", 0);
-        if (((int)dialog_id) == 0) {
+        if (((int) dialog_id) == 0) {
             max_id = Integer.MIN_VALUE;
         }
         loading = true;
@@ -108,7 +108,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
 
             fragmentView = inflater.inflate(R.layout.media_layout, container, false);
 
-            emptyView = (TextView)fragmentView.findViewById(R.id.searchEmptyView);
+            emptyView = (TextView) fragmentView.findViewById(R.id.searchEmptyView);
             emptyView.setText(LocaleController.getString("NoMedia", R.string.NoMedia));
             emptyView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -116,7 +116,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                     return true;
                 }
             });
-            listView = (GridView)fragmentView.findViewById(R.id.media_grid);
+            listView = (GridView) fragmentView.findViewById(R.id.media_grid);
             progressView = fragmentView.findViewById(R.id.progressLayout);
 
             listView.setAdapter(listAdapter = new ListAdapter(getParentActivity()));
@@ -153,7 +153,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -165,15 +165,15 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == NotificationCenter.mediaDidLoaded) {
-            long uid = (Long)args[0];
-            int guid = (Integer)args[4];
+            long uid = (Long) args[0];
+            int guid = (Integer) args[4];
             if (uid == dialog_id && guid == classGuid) {
                 loading = false;
-                totalCount = (Integer)args[1];
+                totalCount = (Integer) args[1];
                 @SuppressWarnings("uchecked")
-                ArrayList<MessageObject> arr = (ArrayList<MessageObject>)args[2];
+                ArrayList<MessageObject> arr = (ArrayList<MessageObject>) args[2];
                 boolean added = false;
-                boolean enc = ((int)dialog_id) == 0;
+                boolean enc = ((int) dialog_id) == 0;
                 for (MessageObject message : arr) {
                     if (!messagesDict.containsKey(message.messageOwner.id)) {
                         if (!enc) {
@@ -191,7 +191,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                 if (!added) {
                     endReached = true;
                 }
-                cacheEndReached = !(Boolean)args[3];
+                cacheEndReached = !(Boolean) args[3];
                 if (progressView != null) {
                     progressView.setVisibility(View.GONE);
                 }
@@ -206,7 +206,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
             }
         } else if (id == NotificationCenter.messagesDeleted) {
             @SuppressWarnings("unchecked")
-            ArrayList<Integer> markAsDeletedMessages = (ArrayList<Integer>)args[0];
+            ArrayList<Integer> markAsDeletedMessages = (ArrayList<Integer>) args[0];
             boolean updated = false;
             for (Integer ids : markAsDeletedMessages) {
                 MessageObject obj = messagesDict.get(ids);
@@ -221,11 +221,11 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                 listAdapter.notifyDataSetChanged();
             }
         } else if (id == NotificationCenter.didReceivedNewMessages) {
-            long uid = (Long)args[0];
+            long uid = (Long) args[0];
             if (uid == dialog_id) {
                 boolean markAsRead = false;
                 @SuppressWarnings("unchecked")
-                ArrayList<MessageObject> arr = (ArrayList<MessageObject>)args[1];
+                ArrayList<MessageObject> arr = (ArrayList<MessageObject>) args[1];
 
                 for (MessageObject obj : arr) {
                     if (obj.messageOwner.media == null || !(obj.messageOwner.media instanceof TLRPC.TL_messageMediaPhoto) && !(obj.messageOwner.media instanceof TLRPC.TL_messageMediaVideo)) {
@@ -234,7 +234,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                     if (messagesDict.containsKey(obj.messageOwner.id)) {
                         continue;
                     }
-                    boolean enc = ((int)dialog_id) == 0;
+                    boolean enc = ((int) dialog_id) == 0;
                     if (!enc) {
                         if (obj.messageOwner.id > 0) {
                             max_id = Math.min(obj.messageOwner.id, max_id);
@@ -250,10 +250,10 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                 }
             }
         } else if (id == NotificationCenter.messageReceivedByServer) {
-            Integer msgId = (Integer)args[0];
+            Integer msgId = (Integer) args[0];
             MessageObject obj = messagesDict.get(msgId);
             if (obj != null) {
-                Integer newMsgId = (Integer)args[1];
+                Integer newMsgId = (Integer) args[1];
                 messagesDict.remove(msgId);
                 messagesDict.put(newMsgId, obj);
                 obj.messageOwner.id = newMsgId;
@@ -285,9 +285,9 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
 
         for (int a = 0; a < count; a++) {
             View view = listView.getChildAt(a);
-            BackupImageView imageView = (BackupImageView)view.findViewById(R.id.media_photo_image);
+            BackupImageView imageView = (BackupImageView) view.findViewById(R.id.media_photo_image);
             if (imageView != null) {
-                int num = (Integer)imageView.getTag();
+                int num = (Integer) imageView.getTag();
                 if (num < 0 || num >= messages.size()) {
                     continue;
                 }
@@ -309,25 +309,34 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void willSwitchFromPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int index) { }
+    public void willSwitchFromPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int index) {
+    }
 
     @Override
-    public void willHidePhotoViewer() { }
+    public void willHidePhotoViewer() {
+    }
 
     @Override
-    public boolean isPhotoChecked(int index) { return false; }
+    public boolean isPhotoChecked(int index) {
+        return false;
+    }
 
     @Override
-    public void setPhotoChecked(int index) { }
+    public void setPhotoChecked(int index) {
+    }
 
     @Override
-    public void cancelButtonPressed() { }
+    public void cancelButtonPressed() {
+    }
 
     @Override
-    public void sendButtonPressed(int index) { }
+    public void sendButtonPressed(int index) {
+    }
 
     @Override
-    public int getSelectedCount() { return 0; }
+    public int getSelectedCount() {
+        return 0;
+    }
 
     private void fixLayout() {
         if (listView != null) {
@@ -409,7 +418,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
             if (type == 0) {
                 MessageObject message = messages.get(i);
                 if (view == null) {
-                    LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     view = li.inflate(R.layout.media_photo_layout, viewGroup, false);
                 }
                 ViewGroup.LayoutParams params = view.getLayoutParams();
@@ -417,7 +426,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                 params.height = itemWidth;
                 view.setLayoutParams(params);
 
-                BackupImageView imageView = (BackupImageView)view.findViewById(R.id.media_photo_image);
+                BackupImageView imageView = (BackupImageView) view.findViewById(R.id.media_photo_image);
                 imageView.setTag(i);
 
                 if (message.messageOwner.media != null && message.messageOwner.media.photo != null && !message.messageOwner.media.photo.sizes.isEmpty()) {
@@ -435,7 +444,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
             } else if (type == 1) {
                 MessageObject message = messages.get(i);
                 if (view == null) {
-                    LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     view = li.inflate(R.layout.media_video_layout, viewGroup, false);
                 }
                 ViewGroup.LayoutParams params = view.getLayoutParams();
@@ -443,8 +452,8 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                 params.height = itemWidth;
                 view.setLayoutParams(params);
 
-                TextView textView = (TextView)view.findViewById(R.id.chat_video_time);
-                BackupImageView imageView = (BackupImageView)view.findViewById(R.id.media_photo_image);
+                TextView textView = (TextView) view.findViewById(R.id.chat_video_time);
+                BackupImageView imageView = (BackupImageView) view.findViewById(R.id.media_photo_image);
                 imageView.setTag(i);
 
                 if (message.messageOwner.media.video != null && message.messageOwner.media.video.thumb != null) {
@@ -465,7 +474,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
                 imageView.imageReceiver.setVisible(!PhotoViewer.getInstance().isShowingImage(message), false);
             } else if (type == 2) {
                 if (view == null) {
-                    LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     view = li.inflate(R.layout.media_loading_layout, viewGroup, false);
                 }
                 ViewGroup.LayoutParams params = view.getLayoutParams();

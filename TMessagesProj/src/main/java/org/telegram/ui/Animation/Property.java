@@ -34,7 +34,7 @@ public abstract class Property<T, V> {
     }
 
     public void set(T object, V value) {
-        throw new UnsupportedOperationException("Property " + getName() +" is read-only");
+        throw new UnsupportedOperationException("Property " + getName() + " is read-only");
     }
 
     public abstract V get(T object);

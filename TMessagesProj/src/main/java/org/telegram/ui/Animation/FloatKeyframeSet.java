@@ -63,7 +63,7 @@ class FloatKeyframeSet extends KeyframeSet {
             if (mEvaluator == null) {
                 return firstValue + fraction * deltaValue;
             } else {
-                return ((Number)mEvaluator.evaluate(fraction, firstValue, lastValue)).floatValue();
+                return ((Number) mEvaluator.evaluate(fraction, firstValue, lastValue)).floatValue();
             }
         }
         if (fraction <= 0f) {
@@ -78,7 +78,7 @@ class FloatKeyframeSet extends KeyframeSet {
                 fraction = interpolator.getInterpolation(fraction);
             }
             float intervalFraction = (fraction - prevFraction) / (nextFraction - prevFraction);
-            return mEvaluator == null ? prevValue + intervalFraction * (nextValue - prevValue) : ((Number)mEvaluator.evaluate(intervalFraction, prevValue, nextValue)).floatValue();
+            return mEvaluator == null ? prevValue + intervalFraction * (nextValue - prevValue) : ((Number) mEvaluator.evaluate(intervalFraction, prevValue, nextValue)).floatValue();
         } else if (fraction >= 1f) {
             final FloatKeyframe prevKeyframe = (FloatKeyframe) mKeyframes.get(mNumKeyframes - 2);
             final FloatKeyframe nextKeyframe = (FloatKeyframe) mKeyframes.get(mNumKeyframes - 1);
@@ -91,7 +91,7 @@ class FloatKeyframeSet extends KeyframeSet {
                 fraction = interpolator.getInterpolation(fraction);
             }
             float intervalFraction = (fraction - prevFraction) / (nextFraction - prevFraction);
-            return mEvaluator == null ? prevValue + intervalFraction * (nextValue - prevValue) : ((Number)mEvaluator.evaluate(intervalFraction, prevValue, nextValue)).floatValue();
+            return mEvaluator == null ? prevValue + intervalFraction * (nextValue - prevValue) : ((Number) mEvaluator.evaluate(intervalFraction, prevValue, nextValue)).floatValue();
         }
         FloatKeyframe prevKeyframe = (FloatKeyframe) mKeyframes.get(0);
         for (int i = 1; i < mNumKeyframes; ++i) {
@@ -102,13 +102,13 @@ class FloatKeyframeSet extends KeyframeSet {
                     fraction = interpolator.getInterpolation(fraction);
                 }
                 float intervalFraction = (fraction - prevKeyframe.getFraction()) /
-                    (nextKeyframe.getFraction() - prevKeyframe.getFraction());
+                        (nextKeyframe.getFraction() - prevKeyframe.getFraction());
                 float prevValue = prevKeyframe.getFloatValue();
                 float nextValue = nextKeyframe.getFloatValue();
-                return mEvaluator == null ? prevValue + intervalFraction * (nextValue - prevValue) : ((Number)mEvaluator.evaluate(intervalFraction, prevValue, nextValue)).floatValue();
+                return mEvaluator == null ? prevValue + intervalFraction * (nextValue - prevValue) : ((Number) mEvaluator.evaluate(intervalFraction, prevValue, nextValue)).floatValue();
             }
             prevKeyframe = nextKeyframe;
         }
-        return ((Number)mKeyframes.get(mNumKeyframes - 1).getValue()).floatValue();
+        return ((Number) mKeyframes.get(mNumKeyframes - 1).getValue()).floatValue();
     }
 }

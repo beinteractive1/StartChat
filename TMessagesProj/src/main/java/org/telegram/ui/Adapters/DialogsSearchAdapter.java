@@ -176,8 +176,8 @@ public class DialogsSearchAdapter extends BaseContactsSearchAdapter {
                         dialogSearchResult.date = cursor.intValue(1);
                         dialogsResult.put(id, dialogSearchResult);
 
-                        int lower_id = (int)id;
-                        int high_id = (int)(id >> 32);
+                        int lower_id = (int) id;
+                        int high_id = (int) (id >> 32);
                         if (lower_id != 0) {
                             if (high_id == 1) {
                                 if (!serverOnly && !chatsToLoad.contains(lower_id)) {
@@ -222,7 +222,7 @@ public class DialogsSearchAdapter extends BaseContactsSearchAdapter {
                                 if (data != null && cursor.byteBufferValue(0, data.buffer) != 0) {
                                     TLRPC.User user = (TLRPC.User) TLClassStore.Instance().TLdeserialize(data, data.readInt32());
                                     if (user.id != UserConfig.getClientUserId()) {
-                                        DialogSearchResult dialogSearchResult = dialogsResult.get((long)user.id);
+                                        DialogSearchResult dialogSearchResult = dialogsResult.get((long) user.id);
                                         if (user.status != null) {
                                             user.status.expires = cursor.intValue(1);
                                         }
@@ -289,7 +289,7 @@ public class DialogsSearchAdapter extends BaseContactsSearchAdapter {
                                 ByteBufferDesc data2 = MessagesStorage.getInstance().getBuffersStorage().getFreeBuffer(cursor.byteArrayLength(6));
                                 if (data != null && cursor.byteBufferValue(0, data.buffer) != 0 && cursor.byteBufferValue(6, data2.buffer) != 0) {
                                     TLRPC.EncryptedChat chat = (TLRPC.EncryptedChat) TLClassStore.Instance().TLdeserialize(data, data.readInt32());
-                                    DialogSearchResult dialogSearchResult = dialogsResult.get((long)chat.id << 32);
+                                    DialogSearchResult dialogSearchResult = dialogsResult.get((long) chat.id << 32);
 
                                     chat.user_id = cursor.intValue(2);
                                     chat.a_or_b = cursor.byteArrayValue(3);
@@ -299,15 +299,15 @@ public class DialogsSearchAdapter extends BaseContactsSearchAdapter {
                                     chat.seq_in = cursor.intValue(9);
                                     chat.seq_out = cursor.intValue(10);
                                     int use_count = cursor.intValue(11);
-                                    chat.key_use_count_in = (short)(use_count >> 16);
-                                    chat.key_use_count_out = (short)(use_count);
+                                    chat.key_use_count_in = (short) (use_count >> 16);
+                                    chat.key_use_count_out = (short) (use_count);
                                     chat.exchange_id = cursor.longValue(12);
                                     chat.key_create_date = cursor.intValue(13);
                                     chat.future_key_fingerprint = cursor.longValue(14);
                                     chat.future_auth_key = cursor.byteArrayValue(15);
                                     chat.key_hash = cursor.byteArrayValue(16);
 
-                                    TLRPC.User user = (TLRPC.User)TLClassStore.Instance().TLdeserialize(data2, data2.readInt32());
+                                    TLRPC.User user = (TLRPC.User) TLClassStore.Instance().TLdeserialize(data2, data2.readInt32());
                                     if (user.status != null) {
                                         user.status.expires = cursor.intValue(7);
                                     }
@@ -357,7 +357,7 @@ public class DialogsSearchAdapter extends BaseContactsSearchAdapter {
                     cursor = MessagesStorage.getInstance().getDatabase().queryFinalized("SELECT u.data, u.status, u.name, u.uid FROM users as u INNER JOIN contacts as c ON u.uid = c.uid");
                     while (cursor.next()) {
                         int uid = cursor.intValue(3);
-                        if (dialogsResult.containsKey((long)uid)) {
+                        if (dialogsResult.containsKey((long) uid)) {
                             continue;
                         }
                         String name = cursor.stringValue(2);
@@ -593,7 +593,7 @@ public class DialogsSearchAdapter extends BaseContactsSearchAdapter {
                 view = new DialogCell(mContext);
             }
             ((DialogCell) view).useSeparator = (i != getCount() - 1);
-            MessageObject messageObject = (MessageObject)getItem(i);
+            MessageObject messageObject = (MessageObject) getItem(i);
             ((DialogCell) view).setDialog(messageObject.getDialogId(), messageObject, false, messageObject.messageOwner.date, 0);
         } else if (type == 3) {
             if (view == null) {

@@ -3,4 +3,12 @@
     <color name="background_tab_pressed">#6633B5E5</color>
     <color name="divider">#dcdcdc</color>
     <color name="header">#ff54759e</color>
+    <color name="bg_form">@android:color/white</color>
+
+    <!-- scanner -->
+    <color name="scan_mask">#60000000</color>
+    <color name="scan_laser">#cc0000</color>
+    <color name="scan_dot">#ff6600</color>
+    <color name="scan_result_view">#b0000000</color>
+    <color name="scan_result_dots">#c099cc00</color>
 </resources>

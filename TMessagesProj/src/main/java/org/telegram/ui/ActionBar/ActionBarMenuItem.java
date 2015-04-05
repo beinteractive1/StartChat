@@ -39,7 +39,9 @@ public class ActionBarMenuItem extends ImageView {
 
     public static interface ActionBarMenuItemSearchListener {
         public abstract void onSearchExpand();
+
         public abstract void onSearchCollapse();
+
         public abstract void onTextChanged(EditText editText);
     }
 
@@ -98,8 +100,8 @@ public class ActionBarMenuItem extends ImageView {
                 for (int a = 0; a < popupLayout.getChildCount(); a++) {
                     View child = popupLayout.getChildAt(a);
                     child.getHitRect(rect);
-                    if ((Integer)child.getTag() < 100) {
-                        if (!rect.contains((int)x, (int)y)) {
+                    if ((Integer) child.getTag() < 100) {
+                        if (!rect.contains((int) x, (int) y)) {
                             child.setPressed(false);
                             child.setSelected(false);
                             if (Build.VERSION.SDK_INT >= 21) {
@@ -153,7 +155,7 @@ public class ActionBarMenuItem extends ImageView {
                     if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
                         if (popupWindow != null && popupWindow.isShowing()) {
                             v.getHitRect(rect);
-                            if (!rect.contains((int)event.getX(), (int)event.getY())) {
+                            if (!rect.contains((int) event.getX(), (int) event.getY())) {
                                 popupWindow.dismiss();
                             }
                         }
@@ -192,7 +194,7 @@ public class ActionBarMenuItem extends ImageView {
             }
         }
         popupLayout.addView(textView);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)textView.getLayoutParams();
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
         if (LocaleController.isRTL) {
             layoutParams.gravity = Gravity.RIGHT;
         }
@@ -241,7 +243,7 @@ public class ActionBarMenuItem extends ImageView {
             popupWindow.getContentView().setOnKeyListener(new OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (keyCode ==  KeyEvent.KEYCODE_MENU && event.getRepeatCount() == 0 && event.getAction() == KeyEvent.ACTION_UP && popupWindow != null && popupWindow.isShowing()) {
+                    if (keyCode == KeyEvent.KEYCODE_MENU && event.getRepeatCount() == 0 && event.getAction() == KeyEvent.ACTION_UP && popupWindow != null && popupWindow.isShowing()) {
                         popupWindow.dismiss();
                         return true;
                     }
@@ -397,7 +399,7 @@ public class ActionBarMenuItem extends ImageView {
                 searchField.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
             }
             parentMenu.addView(searchField, 0);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)searchField.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) searchField.getLayoutParams();
             layoutParams.weight = 1;
             layoutParams.width = 0;
             layoutParams.gravity = Gravity.CENTER_VERTICAL;

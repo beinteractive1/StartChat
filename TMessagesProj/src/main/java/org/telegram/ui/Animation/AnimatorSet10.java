@@ -69,7 +69,7 @@ public final class AnimatorSet10 extends Animator10 {
                 play(items[0]);
             } else {
                 for (int i = 0; i < items.length - 1; ++i) {
-                    play(items[i]).before(items[i+1]);
+                    play(items[i]).before(items[i + 1]);
                 }
             }
         }
@@ -82,7 +82,7 @@ public final class AnimatorSet10 extends Animator10 {
                 play(items.get(0));
             } else {
                 for (int i = 0; i < items.size() - 1; ++i) {
-                    play(items.get(i)).before(items.get(i+1));
+                    play(items.get(i)).before(items.get(i + 1));
                 }
             }
         }
@@ -140,7 +140,7 @@ public final class AnimatorSet10 extends Animator10 {
             }
             if (mDelayAnim != null && mDelayAnim.isRunning()) {
                 mDelayAnim.cancel();
-            } else  if (mSortedNodes.size() > 0) {
+            } else if (mSortedNodes.size() > 0) {
                 for (Node node : mSortedNodes) {
                     node.animation.cancel();
                 }
@@ -335,9 +335,11 @@ public final class AnimatorSet10 extends Animator10 {
             mDelayAnim.setDuration(mStartDelay);
             mDelayAnim.addListener(new AnimatorListenerAdapter10() {
                 boolean canceled = false;
+
                 public void onAnimationCancel(Animator10 anim) {
                     canceled = true;
                 }
+
                 public void onAnimationEnd(Animator10 anim) {
                     if (!canceled) {
                         int numNodes = nodesToStart.size();
@@ -641,7 +643,7 @@ public final class AnimatorSet10 extends Animator10 {
                 node.animation = animation.clone();
                 return node;
             } catch (CloneNotSupportedException e) {
-               throw new AssertionError();
+                throw new AssertionError();
             }
         }
     }

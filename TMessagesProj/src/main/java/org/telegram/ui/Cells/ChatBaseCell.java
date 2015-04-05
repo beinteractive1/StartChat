@@ -34,8 +34,11 @@ public class ChatBaseCell extends BaseCell {
 
     public static interface ChatBaseCellDelegate {
         public abstract void didPressedUserAvatar(ChatBaseCell cell, TLRPC.User user);
+
         public abstract void didPressedCancelSendButton(ChatBaseCell cell);
+
         public abstract void didLongPressed(ChatBaseCell cell);
+
         public abstract boolean canPerformActions();
     }
 
@@ -259,7 +262,7 @@ public class ChatBaseCell extends BaseCell {
         }
 
         currentTimeString = LocaleController.formatterDay.format((long) (currentMessageObject.messageOwner.date) * 1000);
-        timeWidth = (int)Math.ceil(currentTimePaint.measureText(currentTimeString));
+        timeWidth = (int) Math.ceil(currentTimePaint.measureText(currentTimeString));
 
         namesOffset = 0;
 
@@ -270,7 +273,7 @@ public class ChatBaseCell extends BaseCell {
             CharSequence nameStringFinal = TextUtils.ellipsize(currentNameString.replace("\n", " "), namePaint, nameWidth - AndroidUtilities.dp(12), TextUtils.TruncateAt.END);
             nameLayout = new StaticLayout(nameStringFinal, namePaint, nameWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             if (nameLayout.getLineCount() > 0) {
-                nameWidth = (int)Math.ceil(nameLayout.getLineWidth(0));
+                nameWidth = (int) Math.ceil(nameLayout.getLineWidth(0));
                 namesOffset += AndroidUtilities.dp(18);
                 nameOffsetX = nameLayout.getLineLeft(0);
             } else {
@@ -524,7 +527,7 @@ public class ChatBaseCell extends BaseCell {
                 boolean drawCheck2 = false;
                 boolean drawClock = false;
                 boolean drawError = false;
-                boolean isBroadcast = (int)(currentMessageObject.getDialogId() >> 32) == 1;
+                boolean isBroadcast = (int) (currentMessageObject.getDialogId() >> 32) == 1;
 
                 if (currentMessageObject.isSending()) {
                     drawCheck1 = false;

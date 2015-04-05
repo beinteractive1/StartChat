@@ -19,6 +19,8 @@ public class Io
 {
     private static final Logger LOG = LoggerFactory.getLogger(Io.class);
 
+    public static final long BACKUP_MAX_CHARS = 10000000;
+
     public static final long copy(@Nonnull final Reader reader, @Nonnull final StringBuilder builder) throws IOException
     {
         return copy(reader, builder, 0);

@@ -39,7 +39,6 @@ public class AvatarDrawable extends Drawable {
             R.drawable.bar_selector_green, R.drawable.bar_selector_cyan, R.drawable.bar_selector_blue, R.drawable.bar_selector_violet, R.drawable.bar_selector_pink};
 
 
-
     private static Drawable broadcastDrawable;
     private static Drawable photoDrawable;
 

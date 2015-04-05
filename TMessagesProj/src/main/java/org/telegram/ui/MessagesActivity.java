@@ -240,7 +240,7 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                 }
             });
 
-            messagesListView = (ListView)fragmentView.findViewById(R.id.messages_list_view);
+            messagesListView = (ListView) fragmentView.findViewById(R.id.messages_list_view);
             messagesListView.setAdapter(dialogsAdapter);
             if (Build.VERSION.SDK_INT >= 11) {
                 messagesListView.setVerticalScrollbarPosition(LocaleController.isRTL ? ListView.SCROLLBAR_POSITION_LEFT : ListView.SCROLLBAR_POSITION_RIGHT);
@@ -264,16 +264,16 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
             });
 
 
-            TextView textView = (TextView)fragmentView.findViewById(R.id.list_empty_view_text1);
+            TextView textView = (TextView) fragmentView.findViewById(R.id.list_empty_view_text1);
             textView.setText(LocaleController.getString("NoChats", R.string.NoChats));
-            textView = (TextView)fragmentView.findViewById(R.id.list_empty_view_text2);
+            textView = (TextView) fragmentView.findViewById(R.id.list_empty_view_text2);
             textView.setText(LocaleController.getString("NoChatsHelp", R.string.NoChatsHelp));
-            textView = (TextView)fragmentView.findViewById(R.id.search_empty_text);
+            textView = (TextView) fragmentView.findViewById(R.id.search_empty_text);
             textView.setText(LocaleController.getString("NoResult", R.string.NoResult));
 
-            floatingButton = (ImageView)fragmentView.findViewById(R.id.floating_button);
+            floatingButton = (ImageView) fragmentView.findViewById(R.id.floating_button);
             floatingButton.setVisibility(onlySelect ? View.GONE : View.VISIBLE);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)floatingButton.getLayoutParams();
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) floatingButton.getLayoutParams();
             layoutParams.leftMargin = LocaleController.isRTL ? AndroidUtilities.dp(14) : 0;
             layoutParams.rightMargin = LocaleController.isRTL ? 0 : AndroidUtilities.dp(14);
             layoutParams.gravity = (LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.BOTTOM;
@@ -305,7 +305,7 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                     }
                     long dialog_id = 0;
                     int message_id = 0;
-                    BaseFragmentAdapter adapter = (BaseFragmentAdapter)messagesListView.getAdapter();
+                    BaseFragmentAdapter adapter = (BaseFragmentAdapter) messagesListView.getAdapter();
                     if (adapter == dialogsAdapter) {
                         TLRPC.TL_dialog dialog = dialogsAdapter.getItem(i);
                         if (dialog == null) {
@@ -318,7 +318,7 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                             dialog_id = ((TLRPC.User) obj).id;
                             if (dialogsSearchAdapter.isGlobalSearch(i)) {
                                 ArrayList<TLRPC.User> users = new ArrayList<TLRPC.User>();
-                                users.add((TLRPC.User)obj);
+                                users.add((TLRPC.User) obj);
                                 MessagesController.getInstance().putUsers(users, false);
                                 MessagesStorage.getInstance().putUsersAndChats(users, null, false, true);
                             }
@@ -329,9 +329,9 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                                 dialog_id = AndroidUtilities.makeBroadcastId(((TLRPC.Chat) obj).id);
                             }
                         } else if (obj instanceof TLRPC.EncryptedChat) {
-                            dialog_id = ((long)((TLRPC.EncryptedChat) obj).id) << 32;
+                            dialog_id = ((long) ((TLRPC.EncryptedChat) obj).id) << 32;
                         } else if (obj instanceof MessageObject) {
-                            MessageObject messageObject = (MessageObject)obj;
+                            MessageObject messageObject = (MessageObject) obj;
                             dialog_id = messageObject.getDialogId();
                             message_id = messageObject.messageOwner.id;
                         }
@@ -345,8 +345,8 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                         didSelectResult(dialog_id, true, false);
                     } else {
                         Bundle args = new Bundle();
-                        int lower_part = (int)dialog_id;
-                        int high_id = (int)(dialog_id >> 32);
+                        int lower_part = (int) dialog_id;
+                        int high_id = (int) (dialog_id >> 32);
                         if (lower_part != 0) {
                             if (high_id == 1) {
                                 args.putInt("chat_id", lower_part);
@@ -402,8 +402,8 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                     builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
 
-                    int lower_id = (int)selectedDialog;
-                    int high_id = (int)(selectedDialog >> 32);
+                    int lower_id = (int) selectedDialog;
+                    int high_id = (int) (selectedDialog >> 32);
 
                     final boolean isChat = lower_id < 0 && high_id != 1;
                     builder.setItems(new CharSequence[]{LocaleController.getString("ClearHistory", R.string.ClearHistory),
@@ -492,7 +492,7 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -570,7 +570,7 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
                 updateVisibleRows(0);
             }
         } else if (id == NotificationCenter.updateInterfaces) {
-            updateVisibleRows((Integer)args[0]);
+            updateVisibleRows((Integer) args[0]);
         } else if (id == NotificationCenter.appDidLogout) {
             dialogsLoaded = false;
         } else if (id == NotificationCenter.encryptedChatUpdated) {
@@ -579,8 +579,8 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
             updateVisibleRows(0);
         } else if (id == NotificationCenter.openedChatChanged) {
             if (!serverOnly && AndroidUtilities.isTablet()) {
-                boolean close = (Boolean)args[1];
-                long dialog_id = (Long)args[0];
+                boolean close = (Boolean) args[1];
+                long dialog_id = (Long) args[0];
                 if (close) {
                     if (dialog_id == openedDialogId) {
                         openedDialogId = 0;
@@ -648,8 +648,8 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
-            int lower_part = (int)dialog_id;
-            int high_id = (int)(dialog_id >> 32);
+            int lower_part = (int) dialog_id;
+            int high_id = (int) (dialog_id >> 32);
             if (lower_part != 0) {
                 if (high_id == 1) {
                     TLRPC.Chat chat = MessagesController.getInstance().getChat(lower_part);
@@ -697,7 +697,7 @@ public class MessagesActivity extends BaseFragment implements NotificationCenter
             builder.setNegativeButton(R.string.Cancel, null);
             showAlertDialog(builder);
             if (checkBox != null) {
-                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams)checkBox.getLayoutParams();
+                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) checkBox.getLayoutParams();
                 if (layoutParams != null) {
                     layoutParams.rightMargin = layoutParams.leftMargin = AndroidUtilities.dp(10);
                     checkBox.setLayoutParams(layoutParams);

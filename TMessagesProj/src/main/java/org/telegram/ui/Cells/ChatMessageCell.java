@@ -37,22 +37,22 @@ public class ChatMessageCell extends ChatBaseCell {
     public boolean onTouchEvent(MotionEvent event) {
         if (currentMessageObject != null && currentMessageObject.textLayoutBlocks != null && !currentMessageObject.textLayoutBlocks.isEmpty() && currentMessageObject.messageText instanceof Spannable && !isPressed) {
             if (event.getAction() == MotionEvent.ACTION_DOWN || pressedLink != null && event.getAction() == MotionEvent.ACTION_UP) {
-                int x = (int)event.getX();
-                int y = (int)event.getY();
+                int x = (int) event.getX();
+                int y = (int) event.getY();
                 if (x >= textX && y >= textY && x <= textX + currentMessageObject.textWidth && y <= textY + currentMessageObject.textHeight) {
                     y -= textY;
                     int blockNum = Math.max(0, y / currentMessageObject.blockHeight);
                     if (blockNum < currentMessageObject.textLayoutBlocks.size()) {
                         try {
                             MessageObject.TextLayoutBlock block = currentMessageObject.textLayoutBlocks.get(blockNum);
-                            x -= textX - (int)Math.ceil(block.textXOffset);
+                            x -= textX - (int) Math.ceil(block.textXOffset);
                             y -= block.textYOffset;
                             final int line = block.textLayout.getLineForVertical(y);
                             final int off = block.textLayout.getOffsetForHorizontal(line, x) + block.charactersOffset;
 
                             final float left = block.textLayout.getLineLeft(line);
                             if (left <= x && left + block.textLayout.getLineWidth(line) >= x) {
-                                Spannable buffer = (Spannable)currentMessageObject.messageText;
+                                Spannable buffer = (Spannable) currentMessageObject.messageText;
                                 ClickableSpan[] link = buffer.getSpans(off, off, ClickableSpan.class);
 
                                 if (link.length != 0) {
@@ -223,7 +223,7 @@ public class ChatMessageCell extends ChatBaseCell {
             }
             MessageObject.TextLayoutBlock block = currentMessageObject.textLayoutBlocks.get(a);
             canvas.save();
-            canvas.translate(textX - (int)Math.ceil(block.textXOffset), textY + block.textYOffset);
+            canvas.translate(textX - (int) Math.ceil(block.textXOffset), textY + block.textYOffset);
             try {
                 block.textLayout.draw(canvas);
             } catch (Exception e) {

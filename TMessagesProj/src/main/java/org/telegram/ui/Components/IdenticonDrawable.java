@@ -49,7 +49,7 @@ public class IdenticonDrawable extends Drawable {
         }
 
         int bitPointer = 0;
-        float rectSize = (float)Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
+        float rectSize = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
         float xOffset = Math.max(0, (getBounds().width() - rectSize * 8) / 2);
         float yOffset = Math.max(0, (getBounds().height() - rectSize * 8) / 2);
         for (int iy = 0; iy < 8; iy++) {

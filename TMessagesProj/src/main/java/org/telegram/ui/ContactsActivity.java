@@ -174,7 +174,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         if (listView != null) {
                             listView.setAdapter(searchListViewAdapter);
                             searchListViewAdapter.notifyDataSetChanged();
-                            if(android.os.Build.VERSION.SDK_INT >= 11) {
+                            if (android.os.Build.VERSION.SDK_INT >= 11) {
                                 listView.setFastScrollAlwaysVisible(false);
                             }
                             listView.setFastScrollEnabled(false);
@@ -381,7 +381,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -415,10 +415,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             });
             builder.setNegativeButton(R.string.Cancel, null);
             showAlertDialog(builder);
-            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams)editText.getLayoutParams();
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) editText.getLayoutParams();
             if (layoutParams != null) {
                 if (layoutParams instanceof FrameLayout.LayoutParams) {
-                    ((FrameLayout.LayoutParams)layoutParams).gravity = Gravity.CENTER_HORIZONTAL;
+                    ((FrameLayout.LayoutParams) layoutParams).gravity = Gravity.CENTER_HORIZONTAL;
                 }
                 layoutParams.rightMargin = layoutParams.leftMargin = AndroidUtilities.dp(10);
                 editText.setLayoutParams(layoutParams);
@@ -456,13 +456,13 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 listViewAdapter.notifyDataSetChanged();
             }
         } else if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0 || (mask & MessagesController.UPDATE_MASK_STATUS) != 0) {
                 updateVisibleRows(mask);
             }
         } else if (id == NotificationCenter.encryptedChatCreated) {
             if (createSecretChat && creatingChat) {
-                TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat)args[0];
+                TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) args[0];
                 Bundle args2 = new Bundle();
                 args2.putInt("enc_id", encryptedChat.id);
                 presentFragment(new ChatActivity(args2), true);

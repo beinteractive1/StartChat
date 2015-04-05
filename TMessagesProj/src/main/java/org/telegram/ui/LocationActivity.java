@@ -144,13 +144,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 fragmentView = inflater.inflate(R.layout.location_attach_layout, container, false);
             }
 
-            avatarImageView = (BackupImageView)fragmentView.findViewById(R.id.location_avatar_view);
+            avatarImageView = (BackupImageView) fragmentView.findViewById(R.id.location_avatar_view);
             if (avatarImageView != null) {
                 avatarImageView.processDetach = false;
                 avatarImageView.imageReceiver.setRoundRadius(AndroidUtilities.dp(32));
             }
-            nameTextView = (TextView)fragmentView.findViewById(R.id.location_name_label);
-            distanceTextView = (TextView)fragmentView.findViewById(R.id.location_distance_label);
+            nameTextView = (TextView) fragmentView.findViewById(R.id.location_name_label);
+            distanceTextView = (TextView) fragmentView.findViewById(R.id.location_distance_label);
             View bottomView = fragmentView.findViewById(R.id.location_bottom_view);
             TextView sendButton = (TextView) fragmentView.findViewById(R.id.location_send_button);
             if (sendButton != null) {
@@ -158,7 +158,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 sendButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
             }
 
-            mapView = (MapView)fragmentView.findViewById(R.id.map_view);
+            mapView = (MapView) fragmentView.findViewById(R.id.map_view);
             mapView.onCreate(null);
             try {
                 MapsInitializer.initialize(getParentActivity());
@@ -244,7 +244,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 positionMarker(myLocation);
             }
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -292,7 +292,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             if (userLocation != null && distanceTextView != null) {
                 float distance = location.distanceTo(userLocation);
                 if (distance < 1000) {
-                    distanceTextView.setText(String.format("%d %s", (int)(distance), LocaleController.getString("MetersAway", R.string.MetersAway)));
+                    distanceTextView.setText(String.format("%d %s", (int) (distance), LocaleController.getString("MetersAway", R.string.MetersAway)));
                 } else {
                     distanceTextView.setText(String.format("%.2f %s", distance / 1000.0f, LocaleController.getString("KMetersAway", R.string.KMetersAway)));
                 }
@@ -321,7 +321,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0) {
                 updateUserData();
             }

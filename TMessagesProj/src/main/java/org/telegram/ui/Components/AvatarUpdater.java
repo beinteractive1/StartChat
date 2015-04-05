@@ -79,7 +79,7 @@ public class AvatarUpdater implements NotificationCenter.NotificationCenterDeleg
 
     private void startCrop(String path, Uri uri) {
         try {
-            LaunchActivity activity = (LaunchActivity)parentFragment.getParentActivity();
+            LaunchActivity activity = (LaunchActivity) parentFragment.getParentActivity();
             if (activity == null) {
                 return;
             }
@@ -144,7 +144,7 @@ public class AvatarUpdater implements NotificationCenter.NotificationCenterDeleg
     @Override
     public void didReceivedNotification(int id, final Object... args) {
         if (id == NotificationCenter.FileDidUpload) {
-            String location = (String)args[0];
+            String location = (String) args[0];
             if (uploadingAvatar != null && location.equals(uploadingAvatar)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -152,7 +152,7 @@ public class AvatarUpdater implements NotificationCenter.NotificationCenterDeleg
                         NotificationCenter.getInstance().removeObserver(AvatarUpdater.this, NotificationCenter.FileDidUpload);
                         NotificationCenter.getInstance().removeObserver(AvatarUpdater.this, NotificationCenter.FileDidFailUpload);
                         if (delegate != null) {
-                            delegate.didUploadedPhoto((TLRPC.InputFile)args[1], smallPhoto, bigPhoto);
+                            delegate.didUploadedPhoto((TLRPC.InputFile) args[1], smallPhoto, bigPhoto);
                         }
                         uploadingAvatar = null;
                         if (clearAfterUpdate) {
@@ -163,7 +163,7 @@ public class AvatarUpdater implements NotificationCenter.NotificationCenterDeleg
                 });
             }
         } else if (id == NotificationCenter.FileDidFailUpload) {
-            String location = (String)args[0];
+            String location = (String) args[0];
             if (uploadingAvatar != null && location.equals(uploadingAvatar)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override

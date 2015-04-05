@@ -211,7 +211,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     }
 
     private void updateExpanded() {
-        
+
     }
 
     private void updateTabStyles() {

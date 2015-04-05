@@ -120,7 +120,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     if (i == settingsVibrateRow) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                         builder.setTitle(LocaleController.getString("Vibrate", R.string.Vibrate));
-                        builder.setItems(new CharSequence[] {
+                        builder.setItems(new CharSequence[]{
                                 LocaleController.getString("Disabled", R.string.Disabled),
                                 LocaleController.getString("SettingsDefault", R.string.SettingsDefault),
                                 LocaleController.getString("SystemDefault", R.string.SystemDefault),
@@ -156,7 +156,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                         }
                         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                         builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
-                        builder.setItems(new CharSequence[] {
+                        builder.setItems(new CharSequence[]{
                                 LocaleController.getString("Default", R.string.Default),
                                 LocaleController.getString("Enabled", R.string.Enabled),
                                 LocaleController.getString("Disabled", R.string.Disabled)
@@ -212,15 +212,15 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                             return;
                         }
 
-                        LayoutInflater li = (LayoutInflater)getParentActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        LayoutInflater li = (LayoutInflater) getParentActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         view = li.inflate(R.layout.settings_color_dialog_layout, null, false);
-                        final ColorPickerView colorPickerView = (ColorPickerView)view.findViewById(R.id.color_picker);
+                        final ColorPickerView colorPickerView = (ColorPickerView) view.findViewById(R.id.color_picker);
 
                         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("Notifications", Activity.MODE_PRIVATE);
                         if (preferences.contains("color_" + dialog_id)) {
                             colorPickerView.setOldCenterColor(preferences.getInt("color_" + dialog_id, 0xff00ff00));
                         } else {
-                            if ((int)dialog_id < 0) {
+                            if ((int) dialog_id < 0) {
                                 colorPickerView.setOldCenterColor(preferences.getInt("GroupLed", 0xff00ff00));
                             } else {
                                 colorPickerView.setOldCenterColor(preferences.getInt("MessagesLed", 0xff00ff00));
@@ -264,7 +264,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     } else if (i == settingsPriorityRow) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                         builder.setTitle(LocaleController.getString("NotificationsPriority", R.string.NotificationsPriority));
-                        builder.setItems(new CharSequence[] {
+                        builder.setItems(new CharSequence[]{
                                 LocaleController.getString("SettingsDefault", R.string.SettingsDefault),
                                 LocaleController.getString("NotificationsPriorityDefault", R.string.NotificationsPriorityDefault),
                                 LocaleController.getString("NotificationsPriorityHigh", R.string.NotificationsPriorityHigh),
@@ -290,7 +290,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -299,7 +299,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     }
 
     public void updateServerNotificationsSettings() {
-        if ((int)dialog_id == 0) {
+        if ((int) dialog_id == 0) {
             return;
         }
         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("Notifications", Activity.MODE_PRIVATE);
@@ -312,21 +312,21 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
 
         req.peer = new TLRPC.TL_inputNotifyPeer();
 
-        if ((int)dialog_id < 0) {
-            ((TLRPC.TL_inputNotifyPeer)req.peer).peer = new TLRPC.TL_inputPeerChat();
-            ((TLRPC.TL_inputNotifyPeer)req.peer).peer.chat_id = -(int)dialog_id;
+        if ((int) dialog_id < 0) {
+            ((TLRPC.TL_inputNotifyPeer) req.peer).peer = new TLRPC.TL_inputPeerChat();
+            ((TLRPC.TL_inputNotifyPeer) req.peer).peer.chat_id = -(int) dialog_id;
         } else {
-            TLRPC.User user = MessagesController.getInstance().getUser((int)dialog_id);
+            TLRPC.User user = MessagesController.getInstance().getUser((int) dialog_id);
             if (user == null) {
                 return;
             }
             if (user instanceof TLRPC.TL_userForeign || user instanceof TLRPC.TL_userRequest) {
-                ((TLRPC.TL_inputNotifyPeer)req.peer).peer = new TLRPC.TL_inputPeerForeign();
-                ((TLRPC.TL_inputNotifyPeer)req.peer).peer.access_hash = user.access_hash;
+                ((TLRPC.TL_inputNotifyPeer) req.peer).peer = new TLRPC.TL_inputPeerForeign();
+                ((TLRPC.TL_inputNotifyPeer) req.peer).peer.access_hash = user.access_hash;
             } else {
-                ((TLRPC.TL_inputNotifyPeer)req.peer).peer = new TLRPC.TL_inputPeerContact();
+                ((TLRPC.TL_inputNotifyPeer) req.peer).peer = new TLRPC.TL_inputPeerContact();
             }
-            ((TLRPC.TL_inputNotifyPeer)req.peer).peer.user_id = (int)dialog_id;
+            ((TLRPC.TL_inputNotifyPeer) req.peer).peer.user_id = (int) dialog_id;
         }
 
         ConnectionsManager.getInstance().performRpc(req, new RPCRequest.RPCRequestDelegate() {
@@ -348,7 +348,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             if (ringtone != null) {
                 Ringtone rng = RingtoneManager.getRingtone(ApplicationLoader.applicationContext, ringtone);
                 if (rng != null) {
-                    if(ringtone.equals(Settings.System.DEFAULT_NOTIFICATION_URI)) {
+                    if (ringtone.equals(Settings.System.DEFAULT_NOTIFICATION_URI)) {
                         name = LocaleController.getString("Default", R.string.Default);
                     } else {
                         name = rng.getTitle(getParentActivity());
@@ -482,7 +482,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 if (preferences.contains("color_" + dialog_id)) {
                     textCell.setTextAndColor(LocaleController.getString("LedColor", R.string.LedColor), preferences.getInt("color_" + dialog_id, 0xff00ff00), false);
                 } else {
-                    if ((int)dialog_id < 0) {
+                    if ((int) dialog_id < 0) {
                         textCell.setTextAndColor(LocaleController.getString("LedColor", R.string.LedColor), preferences.getInt("GroupLed", 0xff00ff00), false);
                     } else {
                         textCell.setTextAndColor(LocaleController.getString("LedColor", R.string.LedColor), preferences.getInt("MessagesLed", 0xff00ff00), false);

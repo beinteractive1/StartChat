@@ -45,6 +45,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
     public static interface PhotoPickerActivityDelegate {
         public abstract void didSelectPhotos(ArrayList<String> photos);
+
         public abstract void startPhotoSelectActivity();
     }
 
@@ -119,7 +120,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
             fragmentView = inflater.inflate(R.layout.photo_picker_layout, container, false);
 
-            emptyView = (TextView)fragmentView.findViewById(R.id.searchEmptyView);
+            emptyView = (TextView) fragmentView.findViewById(R.id.searchEmptyView);
             emptyView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -127,10 +128,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 }
             });
             emptyView.setText(LocaleController.getString("NoPhotos", R.string.NoPhotos));
-            listView = (GridView)fragmentView.findViewById(R.id.media_grid);
+            listView = (GridView) fragmentView.findViewById(R.id.media_grid);
             progressView = fragmentView.findViewById(R.id.progressLayout);
 
-            Button cancelButton = (Button)fragmentView.findViewById(R.id.cancel_button);
+            Button cancelButton = (Button) fragmentView.findViewById(R.id.cancel_button);
             cancelButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -147,10 +148,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
             cancelButton.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
             cancelButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            doneButtonTextView = (TextView)doneButton.findViewById(R.id.done_button_text);
+            doneButtonTextView = (TextView) doneButton.findViewById(R.id.done_button_text);
             doneButtonTextView.setText(LocaleController.getString("Send", R.string.Send).toUpperCase());
             doneButtonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            doneButtonBadgeTextView = (TextView)doneButton.findViewById(R.id.done_button_badge);
+            doneButtonBadgeTextView = (TextView) doneButton.findViewById(R.id.done_button_badge);
             doneButtonBadgeTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
 
             listView.setAdapter(listAdapter = new ListAdapter(getParentActivity()));
@@ -182,7 +183,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             }
             updateSelectedCount();
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -209,9 +210,9 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == NotificationCenter.albumsDidLoaded) {
-            int guid = (Integer)args[0];
+            int guid = (Integer) args[0];
             if (classGuid == guid) {
-                albumsSorted = (ArrayList<MediaController.AlbumEntry>)args[1];
+                albumsSorted = (ArrayList<MediaController.AlbumEntry>) args[1];
                 if (args[2] != null) {
                     cameraAlbumId = (Integer) args[2];
                 }
@@ -251,9 +252,9 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         for (int a = 0; a < count; a++) {
             View view = listView.getChildAt(a);
-            BackupImageView imageView = (BackupImageView)view.findViewById(R.id.media_photo_image);
+            BackupImageView imageView = (BackupImageView) view.findViewById(R.id.media_photo_image);
             if (imageView != null) {
-                int num = (Integer)imageView.getTag();
+                int num = (Integer) imageView.getTag();
                 if (num < 0 || num >= selectedAlbum.photos.size()) {
                     continue;
                 }
@@ -268,7 +269,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     object.thumb = object.imageReceiver.getBitmap();
                     View frameView = view.findViewById(R.id.photo_frame);
                     frameView.setVisibility(View.GONE);
-                    ImageView checkImageView = (ImageView)view.findViewById(R.id.photo_check);
+                    ImageView checkImageView = (ImageView) view.findViewById(R.id.photo_check);
                     checkImageView.setVisibility(View.GONE);
                     return object;
                 }
@@ -285,14 +286,14 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             if (view.getTag() == null) {
                 continue;
             }
-            int num = (Integer)view.getTag();
+            int num = (Integer) view.getTag();
             if (num < 0 || num >= selectedAlbum.photos.size()) {
                 continue;
             }
             if (num == index) {
                 View frameView = view.findViewById(R.id.photo_frame);
                 frameView.setVisibility(View.VISIBLE);
-                ImageView checkImageView = (ImageView)view.findViewById(R.id.photo_check);
+                ImageView checkImageView = (ImageView) view.findViewById(R.id.photo_check);
                 checkImageView.setVisibility(View.VISIBLE);
                 break;
             }
@@ -330,7 +331,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         for (int a = 0; a < count; a++) {
             View view = listView.getChildAt(a);
-            int num = (Integer)view.getTag();
+            int num = (Integer) view.getTag();
             if (num == index) {
                 updateSelectedPhoto(view, photoEntry);
                 break;
@@ -450,7 +451,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
     private void updateSelectedPhoto(View view, MediaController.PhotoEntry photoEntry) {
         View frameView = view.findViewById(R.id.photo_frame);
-        ImageView checkImageView = (ImageView)view.findViewById(R.id.photo_check);
+        ImageView checkImageView = (ImageView) view.findViewById(R.id.photo_check);
         if (selectedPhotos.containsKey(photoEntry.imageId)) {
             frameView.setBackgroundResource(R.drawable.photoborder);
             checkImageView.setImageResource(R.drawable.selectphoto_small_active);
@@ -507,7 +508,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             int type = getItemViewType(i);
             if (type == 0) {
                 if (view == null) {
-                    LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     view = li.inflate(R.layout.photo_picker_album_layout, viewGroup, false);
                 }
                 ViewGroup.LayoutParams params = view.getLayoutParams();
@@ -516,36 +517,36 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 view.setLayoutParams(params);
 
                 MediaController.AlbumEntry albumEntry = albumsSorted.get(i);
-                BackupImageView imageView = (BackupImageView)view.findViewById(R.id.media_photo_image);
+                BackupImageView imageView = (BackupImageView) view.findViewById(R.id.media_photo_image);
                 if (albumEntry.coverPhoto != null && albumEntry.coverPhoto.path != null) {
                     imageView.setImage("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, mContext.getResources().getDrawable(R.drawable.nophotos));
                 } else {
                     imageView.setImageResource(R.drawable.nophotos);
                 }
-                TextView textView = (TextView)view.findViewById(R.id.album_name);
+                TextView textView = (TextView) view.findViewById(R.id.album_name);
                 textView.setText(albumEntry.bucketName);
                 if (cameraAlbumId != null && albumEntry.bucketId == cameraAlbumId) {
 
                 } else {
 
                 }
-                textView = (TextView)view.findViewById(R.id.album_count);
+                textView = (TextView) view.findViewById(R.id.album_count);
                 textView.setText("" + albumEntry.photos.size());
             } else if (type == 1) {
                 if (view == null) {
-                    LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     view = li.inflate(R.layout.photo_picker_photo_layout, viewGroup, false);
                     View checkImageView = view.findViewById(R.id.photo_check_frame);
                     checkImageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            MediaController.PhotoEntry photoEntry = selectedAlbum.photos.get((Integer)((View)v.getParent()).getTag());
+                            MediaController.PhotoEntry photoEntry = selectedAlbum.photos.get((Integer) ((View) v.getParent()).getTag());
                             if (selectedPhotos.containsKey(photoEntry.imageId)) {
                                 selectedPhotos.remove(photoEntry.imageId);
                             } else {
                                 selectedPhotos.put(photoEntry.imageId, photoEntry);
                             }
-                            updateSelectedPhoto((View)v.getParent(), photoEntry);
+                            updateSelectedPhoto((View) v.getParent(), photoEntry);
                             updateSelectedCount();
                         }
                     });
@@ -556,7 +557,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 view.setLayoutParams(params);
 
                 MediaController.PhotoEntry photoEntry = selectedAlbum.photos.get(i);
-                BackupImageView imageView = (BackupImageView)view.findViewById(R.id.media_photo_image);
+                BackupImageView imageView = (BackupImageView) view.findViewById(R.id.media_photo_image);
                 imageView.setTag(i);
                 view.setTag(i);
                 if (photoEntry.path != null) {
@@ -569,7 +570,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 imageView.imageReceiver.setVisible(!showing, false);
                 View frameView = view.findViewById(R.id.photo_frame);
                 frameView.setVisibility(showing ? View.GONE : View.VISIBLE);
-                ImageView checkImageView = (ImageView)view.findViewById(R.id.photo_check);
+                ImageView checkImageView = (ImageView) view.findViewById(R.id.photo_check);
                 checkImageView.setVisibility(showing ? View.GONE : View.VISIBLE);
             }
             return view;

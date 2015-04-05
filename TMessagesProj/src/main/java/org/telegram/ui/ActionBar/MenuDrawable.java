@@ -81,7 +81,7 @@ public class MenuDrawable extends Drawable {
         canvas.rotate(currentRotation * (reverseAngle ? -180 : 180));
         canvas.drawLine(-AndroidUtilities.dp(9), 0, AndroidUtilities.dp(9) - AndroidUtilities.dp(1) * currentRotation, 0, paint);
         float endYDiff = AndroidUtilities.dp(5) * (1 - Math.abs(currentRotation)) - AndroidUtilities.dp(0.5f) * Math.abs(currentRotation);
-        float endXDiff = AndroidUtilities.dp(9) - AndroidUtilities.dp(0.5f) *  Math.abs(currentRotation);
+        float endXDiff = AndroidUtilities.dp(9) - AndroidUtilities.dp(0.5f) * Math.abs(currentRotation);
         float startYDiff = AndroidUtilities.dp(5) + AndroidUtilities.dp(3.5f) * Math.abs(currentRotation);
         float startXDiff = -AndroidUtilities.dp(9) + AndroidUtilities.dp(8.5f) * Math.abs(currentRotation);
         canvas.drawLine(startXDiff, -startYDiff, endXDiff, -endYDiff, paint);

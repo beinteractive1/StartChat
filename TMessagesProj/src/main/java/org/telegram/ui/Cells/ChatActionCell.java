@@ -37,7 +37,9 @@ public class ChatActionCell extends BaseCell {
 
     public static interface ChatActionCellDelegate {
         public abstract void didClickedImage(ChatActionCell cell);
+
         public abstract void didLongPressed(ChatActionCell cell);
+
         public abstract void needOpenUserProfile(int uid);
     }
 
@@ -118,7 +120,7 @@ public class ChatActionCell extends BaseCell {
             }
             imageReceiver.setVisible(!PhotoViewer.getInstance().isShowingImage(currentMessageObject), false);
         } else {
-            imageReceiver.setImageBitmap((Bitmap)null);
+            imageReceiver.setImageBitmap((Bitmap) null);
         }
         requestLayout();
     }
@@ -184,11 +186,11 @@ public class ChatActionCell extends BaseCell {
                     y -= textY;
                     x -= textXLeft;
 
-                    final int line = textLayout.getLineForVertical((int)y);
+                    final int line = textLayout.getLineForVertical((int) y);
                     final int off = textLayout.getOffsetForHorizontal(line, x);
                     final float left = textLayout.getLineLeft(line);
                     if (left <= x && left + textLayout.getLineWidth(line) >= x) {
-                        Spannable buffer = (Spannable)currentMessageObject.messageText;
+                        Spannable buffer = (Spannable) currentMessageObject.messageText;
                         URLSpan[] link = buffer.getSpans(off, off, URLSpan.class);
 
                         if (link.length != 0) {
@@ -242,12 +244,12 @@ public class ChatActionCell extends BaseCell {
                     float lineLeft = 0;
                     try {
                         lineWidth = textLayout.getLineWidth(a);
-                        textHeight = (int)Math.max(textHeight, Math.ceil(textLayout.getLineBottom(a)));
+                        textHeight = (int) Math.max(textHeight, Math.ceil(textLayout.getLineBottom(a)));
                     } catch (Exception e) {
                         FileLog.e("tmessages", e);
                         return;
                     }
-                    textWidth = (int)Math.max(textWidth, Math.ceil(lineWidth));
+                    textWidth = (int) Math.max(textWidth, Math.ceil(lineWidth));
                 }
             } catch (Exception e) {
                 FileLog.e("tmessages", e);

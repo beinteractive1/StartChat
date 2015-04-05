@@ -65,12 +65,12 @@ public class VideoSeekBarView extends View {
         }
         float x = event.getX();
         float y = event.getY();
-        float thumbX = (int)((getMeasuredWidth() - thumbWidth) * progress);
+        float thumbX = (int) ((getMeasuredWidth() - thumbWidth) * progress);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             int additionWidth = (getMeasuredHeight() - thumbWidth) / 2;
             if (thumbX - additionWidth <= x && x <= thumbX + thumbWidth + additionWidth && y >= 0 && y <= getMeasuredHeight()) {
                 pressed = true;
-                thumbDX = (int)(x - thumbX);
+                thumbDX = (int) (x - thumbX);
                 getParent().requestDisallowInterceptTouchEvent(true);
                 invalidate();
                 return true;
@@ -78,7 +78,7 @@ public class VideoSeekBarView extends View {
         } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
             if (pressed) {
                 if (event.getAction() == MotionEvent.ACTION_UP && delegate != null) {
-                    delegate.onSeekBarDrag(thumbX / (float)(getMeasuredWidth() - thumbWidth));
+                    delegate.onSeekBarDrag(thumbX / (float) (getMeasuredWidth() - thumbWidth));
                 }
                 pressed = false;
                 invalidate();
@@ -86,7 +86,7 @@ public class VideoSeekBarView extends View {
             }
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             if (pressed) {
-                thumbX = (int)(x - thumbDX);
+                thumbX = (int) (x - thumbDX);
                 if (thumbX < 0) {
                     thumbX = 0;
                 } else if (thumbX > getMeasuredWidth() - thumbWidth) {
@@ -117,7 +117,7 @@ public class VideoSeekBarView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         int y = (getMeasuredHeight() - thumbHeight) / 2;
-        int thumbX = (int)((getMeasuredWidth() - thumbWidth) * progress);
+        int thumbX = (int) ((getMeasuredWidth() - thumbWidth) * progress);
         canvas.drawRect(thumbWidth / 2, getMeasuredHeight() / 2 - AndroidUtilities.dp(1), getMeasuredWidth() - thumbWidth / 2, getMeasuredHeight() / 2 + AndroidUtilities.dp(1), innerPaint1);
         thumbDrawable1.setBounds(thumbX, y, thumbX + thumbWidth, y + thumbHeight);
         thumbDrawable1.draw(canvas);

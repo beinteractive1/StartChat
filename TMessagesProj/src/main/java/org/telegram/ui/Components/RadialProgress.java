@@ -108,7 +108,7 @@ public class RadialProgress {
 
     private void invalidateParent() {
         int offset = AndroidUtilities.dp(2);
-        parent.invalidate((int)progressRect.left - offset, (int)progressRect.top - offset, (int)progressRect.right + offset * 2, (int)progressRect.bottom + offset * 2);
+        parent.invalidate((int) progressRect.left - offset, (int) progressRect.top - offset, (int) progressRect.right + offset * 2, (int) progressRect.bottom + offset * 2);
     }
 
     public void setBackground(Drawable drawable, boolean withRound, boolean animated) {
@@ -133,25 +133,25 @@ public class RadialProgress {
 
     public void onDraw(Canvas canvas) {
         if (previousDrawable != null) {
-            previousDrawable.setAlpha((int)(255 * animatedAlphaValue));
-            previousDrawable.setBounds((int)progressRect.left, (int)progressRect.top, (int)progressRect.right, (int)progressRect.bottom);
+            previousDrawable.setAlpha((int) (255 * animatedAlphaValue));
+            previousDrawable.setBounds((int) progressRect.left, (int) progressRect.top, (int) progressRect.right, (int) progressRect.bottom);
             previousDrawable.draw(canvas);
         }
 
         if (!hideCurrentDrawable && currentDrawable != null) {
             if (previousDrawable != null) {
-                currentDrawable.setAlpha((int)(255 * (1.0f - animatedAlphaValue)));
+                currentDrawable.setAlpha((int) (255 * (1.0f - animatedAlphaValue)));
             } else {
                 currentDrawable.setAlpha(255);
             }
-            currentDrawable.setBounds((int)progressRect.left, (int)progressRect.top, (int)progressRect.right, (int)progressRect.bottom);
+            currentDrawable.setBounds((int) progressRect.left, (int) progressRect.top, (int) progressRect.right, (int) progressRect.bottom);
             currentDrawable.draw(canvas);
         }
 
         if (currentWithRound || previousWithRound) {
             int diff = AndroidUtilities.dp(1);
             if (previousWithRound) {
-                progressPaint.setAlpha((int)(255 * animatedAlphaValue));
+                progressPaint.setAlpha((int) (255 * animatedAlphaValue));
             } else {
                 progressPaint.setAlpha(255);
             }

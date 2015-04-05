@@ -34,6 +34,7 @@ public class ChatContactCell extends ChatBaseCell {
 
     public static interface ChatContactCellDelegate {
         public abstract void didClickAddButton(ChatContactCell cell, TLRPC.User user);
+
         public abstract void didClickPhone(ChatContactCell cell);
     }
 
@@ -203,7 +204,7 @@ public class ChatContactCell extends ChatBaseCell {
             CharSequence stringFinal = TextUtils.ellipsize(currentNameString.replace("\n", " "), namePaint, nameWidth, TextUtils.TruncateAt.END);
             nameLayout = new StaticLayout(stringFinal, namePaint, nameWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             if (nameLayout.getLineCount() > 0) {
-                nameWidth = (int)Math.ceil(nameLayout.getLineWidth(0));
+                nameWidth = (int) Math.ceil(nameLayout.getLineWidth(0));
             } else {
                 nameWidth = 0;
             }
@@ -221,7 +222,7 @@ public class ChatContactCell extends ChatBaseCell {
             stringFinal = TextUtils.ellipsize(phone.replace("\n", " "), phonePaint, phoneWidth, TextUtils.TruncateAt.END);
             phoneLayout = new StaticLayout(stringFinal, phonePaint, phoneWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             if (phoneLayout.getLineCount() > 0) {
-                phoneWidth = (int)Math.ceil(phoneLayout.getLineWidth(0));
+                phoneWidth = (int) Math.ceil(phoneLayout.getLineWidth(0));
             } else {
                 phoneWidth = 0;
             }

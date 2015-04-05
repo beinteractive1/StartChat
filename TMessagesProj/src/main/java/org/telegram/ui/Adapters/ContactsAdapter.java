@@ -224,9 +224,9 @@ public class ContactsAdapter extends BaseSectionsAdapter {
 
             ArrayList<TLRPC.TL_contact> arr = ContactsController.getInstance().usersSectionsDict.get(ContactsController.getInstance().sortedUsersSectionsArray.get(section - (onlyUsers ? 0 : 1)));
             TLRPC.User user = MessagesController.getInstance().getUser(arr.get(position).user_id);
-            ((UserCell)convertView).setData(user, null, null, 0);
+            ((UserCell) convertView).setData(user, null, null, 0);
             if (checkedMap != null) {
-                ((UserCell) convertView).setChecked(checkedMap.containsKey(user.id), !scrolling  && Build.VERSION.SDK_INT > 10);
+                ((UserCell) convertView).setChecked(checkedMap.containsKey(user.id), !scrolling && Build.VERSION.SDK_INT > 10);
             }
             if (ignoreUsers != null) {
                 if (ignoreUsers.containsKey(user.id)) {

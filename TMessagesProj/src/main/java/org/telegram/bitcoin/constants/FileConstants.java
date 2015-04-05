@@ -1,5 +1,7 @@
 package org.telegram.bitcoin.constants;
 
+import android.os.Environment;
+
 import org.bitcoinj.core.NetworkParameters;
 
 /**

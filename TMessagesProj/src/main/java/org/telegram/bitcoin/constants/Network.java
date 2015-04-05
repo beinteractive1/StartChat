@@ -17,6 +17,9 @@ public interface Network {
     /** MIME type used for transmitting single transactions. */
     public static final String MIMETYPE_TRANSACTION = "application/x-btctx";
 
+    /** MIME type used for transmitting wallet backups. */
+    public static final String MIMETYPE_WALLET_BACKUP = "application/x-bitcoin-wallet-backup";
+
     String EXPLORE_BASE_URL_PROD = "https://www.biteasy.com/";
     String EXPLORE_BASE_URL_TEST = "https://www.biteasy.com/testnet/";
     /** Base URL for browsing transactions, blocks or addresses. */

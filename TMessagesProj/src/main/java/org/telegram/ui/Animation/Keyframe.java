@@ -54,6 +54,7 @@ public abstract class Keyframe implements Cloneable {
     }
 
     public abstract Object getValue();
+
     public abstract void setValue(Object value);
 
     public float getFraction() {

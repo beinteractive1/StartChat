@@ -161,7 +161,7 @@ public class BlockedUsersActivity extends BaseFragment implements NotificationCe
                     selectedUserId = MessagesController.getInstance().blockedUsers.get(i);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                    CharSequence[] items = new CharSequence[] {LocaleController.getString("Unblock", R.string.Unblock)};
+                    CharSequence[] items = new CharSequence[]{LocaleController.getString("Unblock", R.string.Unblock)};
                     builder.setItems(items, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -185,7 +185,7 @@ public class BlockedUsersActivity extends BaseFragment implements NotificationCe
                 listView.setEmptyView(emptyTextView);
             }
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
@@ -196,7 +196,7 @@ public class BlockedUsersActivity extends BaseFragment implements NotificationCe
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == NotificationCenter.updateInterfaces) {
-            int mask = (Integer)args[0];
+            int mask = (Integer) args[0];
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 || (mask & MessagesController.UPDATE_MASK_NAME) != 0) {
                 updateVisibleRows(mask);
             }
@@ -304,7 +304,7 @@ public class BlockedUsersActivity extends BaseFragment implements NotificationCe
 
         @Override
         public int getItemViewType(int i) {
-            if(i == MessagesController.getInstance().blockedUsers.size()) {
+            if (i == MessagesController.getInstance().blockedUsers.size()) {
                 return 1;
             }
             return 0;

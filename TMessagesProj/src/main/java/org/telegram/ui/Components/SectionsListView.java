@@ -191,11 +191,11 @@ public class SectionsListView extends ListView implements AbsListView.OnScrollLi
         }
         for (View header : headers) {
             int saveCount = canvas.save();
-            int top = (Integer)header.getTag();
+            int top = (Integer) header.getTag();
             canvas.translate(LocaleController.isRTL ? getWidth() - header.getWidth() : 0, top);
             canvas.clipRect(0, 0, getWidth(), header.getMeasuredHeight());
             if (top < 0) {
-                canvas.saveLayerAlpha(0, top, header.getWidth(), top + canvas.getHeight(), (int)(255 * (1.0f + (float)top / (float)header.getMeasuredHeight())), Canvas.HAS_ALPHA_LAYER_SAVE_FLAG);
+                canvas.saveLayerAlpha(0, top, header.getWidth(), top + canvas.getHeight(), (int) (255 * (1.0f + (float) top / (float) header.getMeasuredHeight())), Canvas.HAS_ALPHA_LAYER_SAVE_FLAG);
             }
             header.draw(canvas);
             canvas.restoreToCount(saveCount);

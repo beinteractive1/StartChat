@@ -107,7 +107,7 @@ public class CountrySelectActivity extends BaseFragment {
                         searchWas = true;
                         if (listView != null) {
                             listView.setAdapter(searchListViewAdapter);
-                            if(android.os.Build.VERSION.SDK_INT >= 11) {
+                            if (android.os.Build.VERSION.SDK_INT >= 11) {
                                 listView.setFastScrollAlwaysVisible(false);
                             }
                             listView.setFastScrollEnabled(false);
@@ -222,7 +222,7 @@ public class CountrySelectActivity extends BaseFragment {
                 }
             });
         } else {
-            ViewGroup parent = (ViewGroup)fragmentView.getParent();
+            ViewGroup parent = (ViewGroup) fragmentView.getParent();
             if (parent != null) {
                 parent.removeView(fragmentView);
             }
